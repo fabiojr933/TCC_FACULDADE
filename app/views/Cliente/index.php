@@ -17,7 +17,7 @@ $this->verERRO();
 								<div class="rows">
 									<div class="col-10">
 										<span class="text-label">Pesquisar por cliente</span>
-										<input type="text" name="pesquisa" value="pesquisa" placeholder="Digite seu nome" class="form-campo">
+										<input type="text" name="pesquisa"  placeholder="Digite seu nome" class="form-campo">
 									</div>
 									<div class="col-2 mt-4 pt-1">
 										<input type="submit" value="Pesquisar" class="btn d-table m-auto">

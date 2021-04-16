@@ -32,21 +32,7 @@ class ClienteController extends Controller{
         $cliente->logradouro = $_POST["logradouro"];
         $cliente->foto =  $_FILES["foto"];      
 
-        $arquivo = $_FILES["foto"]["tmp_name"];
-        $tamanho = $_FILES["foto"]["size"];
-        $tipo = $_FILES["foto"]["type"];
-        $nome = $_FILES["foto"]["name"];
-
-        if ( $arquivo != "none" )
-        {
-            $fp = fopen($arquivo, "rb");
-            $conteudo = fread($fp, $tamanho);
-            $conteudo = addslashes($conteudo);
-            fclose($fp);
-            $cliente->foto = $conteudo;
-        }
-
-        
+              
                 
 
         Flash::setForm($cliente);
@@ -72,5 +58,12 @@ class ClienteController extends Controller{
         public function excluir($id){
             Service::excluir($this->tabela, $this->campo, $id);
             $this->redirect(URL_BASE."cliente");            
+        }
+        public function pesquisar(){
+            $valor = $_GET["pesquisa"];
+            $campo = "nome";
+            $dados["listaCliente"] = Service::getLike($this->tabela, $campo, $valor, true);
+            $dados["view"] ="Cliente/index";
+            $this->load("template", $dados);
         }
     }

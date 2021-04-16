@@ -11,10 +11,10 @@ define('METODO_PADRAO', 'index');
 define('NAMESPACE_CONTROLLER', 'app\\controllers\\');
 define('TIMEZONE',"America/Fortaleza");
 define('CAMINHO'            , realpath('./'));
-define("TITULO_SITE","mjailton-ligando vc ao mundo do conhecimento");
+define("TITULO_SITE","TCC FACULDADE");
 
 define('URL_BASE', 'http://' . $_SERVER["HTTP_HOST"].'/OS_TCC/');
-define('URL_IMAGEM', "http://". $_SERVER['HTTP_HOST'] . "/OS_TCC/UP/");
+//define('URL_IMAGEM', "http://". $_SERVER['HTTP_HOST'] . "/OS_TCC/fotos/");
 
 define("SESSION_LOGIN","usuario_logado");
 

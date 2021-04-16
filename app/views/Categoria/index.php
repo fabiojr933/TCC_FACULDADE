@@ -7,11 +7,11 @@
 							<a href="" class="btn btn-roxo d-inline-block filtro"><i class="fas fa-filter"></i> Filtrar</a>
 						</div>
 						<div class="base-caixa formulario mb-4 mostraFiltro">							
-							<form action="" method="">
+							<form action="<?php echo URL_BASE."categoria/pesquisar" ?>"  method="GET">
 								<div class="rows">
 									<div class="col-10">
 										<span class="text-label">Pesquisar por categoria</span>
-										<input type="text" placeholder="Digite seu nome" class="form-campo">
+										<input type="text" name="pesquisa" placeholder="Digite seu nome" class="form-campo">
 									</div>
 									<div class="col-2 mt-4 pt-1">
 										<input type="submit" value="Pesquisar" class="btn d-table m-auto">
@@ -21,9 +21,11 @@
 						</div>
 						
 						<div class="base-caixa">	
-							<span class="msg sucesso"><i class="fas fa-check"></i> Mensagem de sucesso <a href="" class="fas fa-times float-right"></a></span>
-
-							<span class="msg erro"><i class="fas fa-exclamation-triangle"></i> Mensagem de erro <a href="" class="fas fa-times float-right"></a></span>
+						<?php  
+								$this->verMSG();
+								$this->verERRO();
+						?>
+	
 	
 							<div class="tabela-responsiva">								
 							<table width="100%" cellpadding="0" cellspacing="0" class="tabela" id="dataTable">
@@ -36,38 +38,14 @@
 								</tr>
 								</thead>
 								<tbody>
-																
+									<?php foreach($listaCategoria as $categoria) {  ?>							
 									<tr>
-										<td>1</td>
-										<td>Nome da categoria</td>										
-										<td align="center"><a href="frm-produto.html" class="btn btn-outline-verde">Editar</a></td>
-										<td align="center"><a href="frm-produto.html" class="btn btn-outline-vermelho">Excluir</a></td>
+										<td><?php echo $categoria->id ?></td>
+										<td><?php echo $categoria->descricao ?></td>										
+										<td align="center"><a href="<?php echo URL_BASE."Categoria/editar/".$categoria->id ?>" class="btn btn-outline-verde">Editar</a></td>
+										<td align="center"><a href="<?php echo URL_BASE."Categoria/excluir/".$categoria->id ?>" class="btn btn-outline-vermelho">Excluir</a></td>
 									 </tr>						
-									<tr>
-										<td>2</td>
-										<td>Nome da categoria</td>										
-										<td align="center"><a href="frm-produto.html" class="btn btn-outline-verde">Editar</a></td>
-										<td align="center"><a href="frm-produto.html" class="btn btn-outline-vermelho">Excluir</a></td>
-									 </tr>						
-									<tr>
-										<td>3</td>
-										<td>Nome da categoria</td>									
-										<td align="center"><a href="frm-produto.html" class="btn btn-outline-verde">Editar</a></td>
-										<td align="center"><a href="frm-produto.html" class="btn btn-outline-vermelho">Excluir</a></td>
-									 </tr>						
-									<tr>
-										<td>4</td>
-										<td>Nome do categoria</td>										
-										<td align="center"><a href="frm-produto.html" class="btn btn-outline-verde">Editar</a></td>
-										<td align="center"><a href="frm-produto.html" class="btn btn-outline-vermelho">Excluir</a></td>
-									 </tr>						
-									<tr>
-										<td>5</td>
-										<td>Nome do categoria</td>										
-										<td align="center"><a href="frm-produto.html" class="btn btn-outline-verde">Editar</a></td>
-										<td align="center"><a href="frm-produto.html" class="btn btn-outline-vermelho">Excluir</a></td>
-									 </tr>
-								
+									 <?php } ?>										
 								  
 								</tbody>
 								 <tfoot>
