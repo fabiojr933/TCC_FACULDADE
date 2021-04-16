@@ -7,8 +7,5 @@ class HomeController extends Controller{
        $dados["view"]       = "home";
 	   $this->load("template", $dados);
 
-      /**
-       * fabio
-       */
    } 
 }

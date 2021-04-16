@@ -6,5 +6,6 @@ CREATE TABLE cliente (
   cidade varchar(50) NOT NULL,
   telefone varchar(50) NOT NULL,
   cep varchar(50) NOT NULL,
-  logradouro varchar(100) NOT NULL
+  logradouro varchar(100) NOT NULL,
+  foto varchar(255)
 ) 

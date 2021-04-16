@@ -25,51 +25,52 @@
 										<div class="rows">
 											<div class="col-12">
 												<span class="text-label">Nome do produto</span>
-												<input type="text" name="descricao" placeholder="Digite seu nome" class="form-campo">
+												<input type="text" name="descricao" value="<?php echo isset($lista->descricao) ? $lista->descricao : null ?>" placeholder="Digite seu nome" class="form-campo">
 											</div>										
 											<div class="col-4">
 												<span class="text-label">Referencia</span>
-												<input type="text" name="referencia" placeholder="Digite a Referencia" class="form-campo">
+												<input type="text" name="referencia" value="<?php echo isset($lista->referencia) ? $lista->referencia : null ?>" placeholder="Digite a Referencia" class="form-campo">
 											</div>											
 											<div class="col-4">
-												<span class="text-label">Categoria</span>
+												<span class="text-label">Categoria</span>												
 												<select class="form-campo" name="categoria">
-												<?php foreach($listaCategoria as $key => $categoria) {  ?>
-													<option value="<?php echo $categoria->id ?>"><?php echo $categoria->descricao ?></option>
+												<?php foreach($listaCategoria as $categoria) {  ?>
+													<option value="<?php echo isset($categoria->id) ? $categoria->id : null ?>" <?php echo $lista->idcategoria == $categoria->id ? "selected" : "" ?>><?php echo isset($categoria->descricao) ? $categoria->descricao : null ?></option>
 													<?php } ?>
 												</select>
 											</div>												
 											<div class="col-4">
-												<span class="text-label">Data Cadastro</span>
-												<input type="date" name="data_vencimento" placeholder="Digite a data do vencimento" class="form-campo">
+												<span class="text-label">Data Vencimento</span>
+												<input type="date" name="data_vencimento" value="<?php echo isset($lista->data_vencimento) ? $lista->data_vencimento : null ?>" placeholder="Digite a data do vencimento" class="form-campo">
 											</div>									
 											<div class="col-4">
 												<span class="text-label">Preço Custo</span>
-												<input type="text" name="preco_custo" placeholder="Digite seu endereço" class="form-campo">
+												<input type="text" name="preco_custo" value="<?php echo isset($lista->preco_custo) ? $lista->preco_venda : null ?>" placeholder="Digite seu endereço" class="form-campo">
 											</div>
 											<div class="col-4">
 												<span class="text-label">Lucro (%)</span>
-												<input type="text" name="lucro" placeholder="Digite seu Preço Custo" class="form-campo">
+												<input type="text" name="lucro" id="btnLucro" value="<?php echo isset($lista->lucro) ? $lista->lucro : null ?>" placeholder="Digite seu Preço Custo" class="form-campo">
 											</div>
 											<div class="col-4">
 												<span class="text-label">Preço Venda</span>
-												<input type="text" name="preco_venda" placeholder="Digite Preço Venda" class="form-campo">
+												<input type="text" name="preco_venda" value="<?php echo isset($lista->preco_venda) ? $lista->preco_venda : null ?>" placeholder="Digite Preço Venda" class="form-campo">
 											</div>
-											<div class="col-10">
+											<div class="col-8">
 												<span class="text-label">Observação</span>
-												<input type="text" name="observacao" placeholder="Digite Preço Venda" class="form-campo">
+												<input type="text" name="observacao" value="<?php echo isset($lista->observacao) ? $lista->observacao : null ?>" placeholder="Digite Preço Venda" class="form-campo">
 											</div>
 
 											<div class="col-4">
 												<span class="text-label">Ativo</span>												
 												<select class="form-campo" name="status">												
-													<option value="1">Ativo</option>	
-													<option value="2">Desativado</option>												
+													<option value="1" <?php echo $lista->status == "1" ? "selected" : "" ?>  >Ativo</option>	
+													<option value="2"  <?php echo $lista->status == '2' ? "selected" : "" ?>>Desativado</option>												
 												</select>
 											</div>	
 
 																				
 											<div class="col-12 mt-4 pb-4">
+												<input type="hidden" name="id" value="<?php echo isset($lista->id) ? $lista->id : null ?>"/>
 												<input type="submit" value="Cadastrar" class="btn d-table m-auto">
 											</div>
 										</div>
@@ -82,3 +83,4 @@
 					</div>
 				</div>
 			</div>	
+			

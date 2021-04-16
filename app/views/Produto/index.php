@@ -21,66 +21,39 @@
 						</div>
 						
 						<div class="base-caixa">	
-							<span class="msg sucesso"><i class="fas fa-check"></i> Mensagem de sucesso <a href="" class="fas fa-times float-right"></a></span>
-
-							<span class="msg erro"><i class="fas fa-exclamation-triangle"></i> Mensagem de erro <a href="" class="fas fa-times float-right"></a></span>
+						<?php 
+							$this->verMSG();
+							$this->verERRO();
+						?>	
 	
 							<div class="tabela-responsiva">								
 							<table width="100%" cellpadding="0" cellspacing="0" class="tabela" id="dataTable">
 								<thead>
 								<tr>
-									<th width="4%" align="left">Id:</th>
-									<th width="40%" align="left">Produto:</th>
-									<th width="40%" align="center">Preço:</th>
+									<th width="10%" align="left">Id:</th>
+									<th width="60%" align="left">Produto:</th>
+									<th width="30%" align="left">Preço:</th>
 									<th align="center">Editar</th>
 									<th align="center">Excluir</th>
 								</tr>
 								</thead>
 								<tbody>
-																
+								<?php foreach($listaProduto as $produto) {  ?>								
 									<tr>
-										<td>1</td>
-										<td>Nome do produto</td>
-										<td align="center">R$ 100,00</td>
-										<td align="center"><a href="frm-produto.html" class="btn btn-outline-verde">Editar</a></td>
-										<td align="center"><a href="frm-produto.html" class="btn btn-outline-vermelho">Excluir</a></td>
-									 </tr>						
-									<tr>
-										<td>2</td>
-										<td>Nome do produto</td>
-										<td align="center">R$ 100,00</td>
-										<td align="center"><a href="frm-produto.html" class="btn btn-outline-verde">Editar</a></td>
-										<td align="center"><a href="frm-produto.html" class="btn btn-outline-vermelho">Excluir</a></td>
-									 </tr>						
-									<tr>
-										<td>3</td>
-										<td>Nome do produto</td>
-										<td align="center">R$ 100,00</td>
-										<td align="center"><a href="frm-produto.html" class="btn btn-outline-verde">Editar</a></td>
-										<td align="center"><a href="frm-produto.html" class="btn btn-outline-vermelho">Excluir</a></td>
-									 </tr>						
-									<tr>
-										<td>4</td>
-										<td>Nome do produto</td>
-										<td align="center">R$ 100,00</td>
-										<td align="center"><a href="frm-produto.html" class="btn btn-outline-verde">Editar</a></td>
-										<td align="center"><a href="frm-produto.html" class="btn btn-outline-vermelho">Excluir</a></td>
-									 </tr>						
-									<tr>
-										<td>5</td>
-										<td>Nome do produto</td>
-										<td align="center">R$ 100,00</td>
-										<td align="center"><a href="frm-produto.html" class="btn btn-outline-verde">Editar</a></td>
-										<td align="center"><a href="frm-produto.html" class="btn btn-outline-vermelho">Excluir</a></td>
-									 </tr>
-								
+										<td><?php echo $produto->id ?></td>
+										<td><?php echo $produto->descricao ?></td>
+										<td align="left"><?php echo $produto->preco_venda ?></td>
+										<td align="center"><a href="<?php echo URL_BASE."Produto/editar/".$produto->id ?>" class="btn btn-outline-verde">Editar</a></td>
+										<td align="center"><a href="<?php echo URL_BASE."Produto/excluir/".$produto->id ?>" class="btn btn-outline-vermelho">Excluir</a></td>
+									 </tr>					
+								<?php } ?>								
 								  
 								</tbody>
 								 <tfoot>
 									<tr>
 										<th align="left">Id:</th>
 										<th align="left">Produto:</th>
-										<th align="center">Preço:</th>
+										<th align="left">Preço:</th>
 										<th align="center">Editar</th>
 										<th align="center">Excluir</th>
 									</tr>

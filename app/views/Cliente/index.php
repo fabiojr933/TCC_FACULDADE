@@ -31,22 +31,22 @@ $this->verERRO();
 							<table width="100%" cellpadding="0" cellspacing="0" class="tabela" id="dataTable">
 								<thead>
 								<tr>
-									<th align="left">Id:</th>
-									<th align="left">Nome:</th>
-									<th align="center">Endereço:</th>
+									<th width="10%" align="left">Id:</th>
+									<th width="60%" align="left">Nome:</th>
+									<th width="30%" align="left">Endereço:</th>
 									<th align="center">Editar</th>
+									<th align="center">Excluir</th>
 								</tr>
 								</thead>
 								<tbody>
 									<?php foreach($listaCliente as $cliente) {  ?>							
 									<tr>
-										<td><?php echo $cliente->id ?></td>
-										<td><?php echo $cliente->nome ?></td>
-										<td align="center"><?php echo $cliente->endereco ?></td>
-										<td align="center">
-											<a href="<?php echo URL_BASE."Cliente/editar/".$cliente->id ?>" class="btn btn-outline-verde d-inline-block">Editar</a>
-											<a href="<?php echo URL_BASE."Cliente/excluir/".$cliente->id ?>" class="btn btn-outline-vermelho d-inline-block">Excluir</a>
-										</td>										
+										<td ><?php echo $cliente->id ?></td>
+										<td ><?php echo $cliente->nome ?></td>
+										<td ><?php echo $cliente->endereco ?></td>										
+										<td align="center"><a href="<?php echo URL_BASE."Cliente/editar/".$cliente->id ?>" class="btn btn-outline-verde">Editar</a></td>
+										<td align="center"><a href="<?php echo URL_BASE."Cliente/excluir/".$cliente->id ?>" class="btn btn-outline-vermelho">Excluir</a></td>
+																			
 									 </tr>	
 									 <?php } ?>
 								  
@@ -55,8 +55,9 @@ $this->verERRO();
 									<tr>
 										<th align="left">Id:</th>
 										<th align="left">Nome:</th>
-										<th align="center">Endereço:</th>
+										<th align="left">Endereço:</th>
 										<th align="center">Editar</th>
+										<th align="center">Excluir</th>
 									</tr>
 								</tfoot>
 							</table>
