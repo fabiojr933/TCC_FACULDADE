@@ -6,5 +6,8 @@ class OrdemServicoController extends Controller{
    public function index(){       
        $dados["view"] = "OrdemServico/index";
 	   $this->load("template", $dados);     
+      /**
+       * cdsc
+       */
    } 
 }

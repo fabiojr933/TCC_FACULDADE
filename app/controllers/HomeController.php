@@ -6,7 +6,10 @@ class HomeController extends Controller{
    public function index(){       
        $dados["view"]       = "home";
 	   $this->load("template", $dados);
-      //pagina home
+      //teste
+      /**
+       * ggdg
+       */
 
    } 
 }
