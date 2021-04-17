@@ -74,12 +74,10 @@
 												<input type="submit" value="Cadastrar" class="btn d-table m-auto">
 											</div>
 										</div>
-									</div>
-									
+									</div>									
 								</div>
 							</form>
-						</div>
-					
+						</div>					
 					</div>
 				</div>
 			</div>	
