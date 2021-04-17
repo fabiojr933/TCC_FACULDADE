@@ -4,7 +4,7 @@
 					</div>
 					<div class="itens-menu">
 						<ul>
-							<li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+							<li><a href="<?php echo URL_BASE."home" ?>"><i class="fas fa-home"></i> Home</a></li>
 						</ul>
 						<div id="accordion">
 							<span><a href=""><i class="fas fa-user"></i> Cliente</a></span>
@@ -22,7 +22,7 @@
 							</ul>
 							<span><a href=""><i class="fas fa-boxes"></i> OS</a></span>
 							<ul>
-							<li><a href="<?php echo URL_BASE."OrdemServico/index" ?>"><i class="far fa-list-alt"></i> teste</a></li>									
+							<li><a href="<?php echo URL_BASE."OrdemServico/index" ?>"><i class="far fa-list-alt"></i> Primas</a></li>									
 								<li><a href="lst-produto.html"><i class="far fa-list-alt"></i> Abertura</a></li>
 								<li><a href="frm-produto.html"><i class="far fa-list-alt"></i> Fechamento</a></li>
 							</ul>

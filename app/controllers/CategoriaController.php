@@ -4,13 +4,14 @@ namespace app\controllers;
 use app\core\Controller;
 use app\core\Flash;
 use app\models\service\CategoriaService;
+use app\models\service\LogarService;
 use app\models\service\Service;
 
 class CategoriaController extends Controller{
 
     private $campo = "id";
     private $tabela = "categoria";
-
+   
     public function index(){
         $dados["listaCategoria"] = Service::lista($this->tabela);
         $dados["view"] = "Categoria/index";
