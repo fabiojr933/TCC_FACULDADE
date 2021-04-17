@@ -21,7 +21,8 @@
 								<li><a href="<?php echo URL_BASE."Categoria/index" ?>"><i class="far fa-list-alt"></i>Lista de Categoria</a></li>
 							</ul>
 							<span><a href=""><i class="fas fa-boxes"></i> OS</a></span>
-							<ul>									
+							<ul>
+							<li><a href="<?php echo URL_BASE."OrdemServico/index" ?>"><i class="far fa-list-alt"></i> teste</a></li>									
 								<li><a href="lst-produto.html"><i class="far fa-list-alt"></i> Abertura</a></li>
 								<li><a href="frm-produto.html"><i class="far fa-list-alt"></i> Fechamento</a></li>
 							</ul>
