@@ -218,7 +218,7 @@ body{
     border: solid 1px #b0b5b9;
 	display:none;
 }
-
+/*
 .listaProdutos{
 	position:absolute;
 	border: solid 1px #b4b0c5;
@@ -242,7 +242,7 @@ body{
 	font-size:.9rem;
 	text-decoration: none;
 }
-.listaProdutos a:hover{background: #d5d3da;}
+.listaProdutos a:hover{background: #d5d3da;}   /*
 
 /*base-home*/
 .base-home{

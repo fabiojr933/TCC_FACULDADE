@@ -23,7 +23,7 @@
 							<span><a href=""><i class="fas fa-boxes"></i> OS</a></span>
 							<ul>
 							<li><a href="<?php echo URL_BASE."OrdemServico/index" ?>"><i class="far fa-list-alt"></i> Primas</a></li>									
-								<li><a href="lst-produto.html"><i class="far fa-list-alt"></i> Abertura</a></li>
+								<li><a href="<?php echo URL_BASE."OrdemServico/abertura" ?>"><i class="far fa-list-alt"></i> Abertura</a></li>
 								<li><a href="frm-produto.html"><i class="far fa-list-alt"></i> Fechamento</a></li>
 							</ul>
 							<span><a href=""><i class="fas fa-search"></i> Consulta</a></span>
@@ -41,7 +41,7 @@
 							</ul>
 						</div>
 						<ul>
-							<li><a href=""> <i class="fas fa fa-sign-out-alt" aria-hidden="true"></i> Sair</a></li>
+							<li><a href="<?php echo URL_BASE."login/logoff" ?>"> <i class="fas fa fa-sign-out-alt" aria-hidden="true"></i> Sair</a></li>
 						</ul>
 					</div>
 				</div>

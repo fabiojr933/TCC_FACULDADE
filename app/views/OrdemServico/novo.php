@@ -1,3 +1,5 @@
+<script src="<?php echo URL_BASE ?>assets/js/pedido.js"></script>
+
 <div class="col-9 home">
 	<div class="caixa">
 		<div class="conteudo pt-3">
@@ -50,25 +52,29 @@
 							<div class="base-home pt-9">
 								<span class="titulo pb-6 pt-6"><i class="far fa-list-alt"></i> Itens do pedido</span>
 								<div class="formulario">
-									<form action="">
+									<form action="" enctype="multipart/form-data">
 										<div class="rows p-3">
 											<div class="col-6 position-relative">
 												<div class="d-flex  text-justify-between items-center">
 													<span class="text-label"> Produto (<a href="javascript:;" onclick="abrirModal('#janela')" class="text-roxo">Buscar</a>)</span>
-
 												</div>
-												<input type="text" id="produto" data-type="localizar_produto" class="form-campo" />
+
+												<div>
+													<input type="text" id="produto" data-type="localizar_produto" class="form-campo" />
+												</div>
+
 
 											</div>
 											<div class="col-2">
 												<span class="text-label">Quantidade</span>
-												<input type="number" value="1" class="form-campo">
+												<input type="number" id="qtde" value="1" class="form-campo">
 											</div>
 											<div class="col-2">
 												<span class="text-label">Valor</span>
-												<input type="text" value="100,00" class="form-campo">
+												<input type="text" id="valor" value="" class="form-campo">
 											</div>
 											<div class="col-2 mt-3 pt-2">
+												<input type="hidden" id="id_produto"/>
 												<input type="submit" value="Inserir" class="btn btn-azul width-100">
 											</div>
 										</div>

@@ -716,3 +716,73 @@ footer p{
 	}
 
 }
+
+.listaProdutos{
+	position:absolute;
+	left:15px;
+	right:15px;
+	border: solid 1px #ccc;
+    background: #fff;
+	border-radius:0 0 5px 5px;
+	z-index:1
+}
+.listaProdutos a {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: .9em;
+    line-height: 23px;
+    padding: 6px;
+	color: #7d8e94;
+}
+.listaProdutos a:hover {
+    background: #eee;
+}
+
+
+.listaCliente{
+	position:absolute;
+	left:15px;
+	right:15px;
+	border: solid 1px #ccc;
+    background: #fff;
+	border-radius:0 0 5px 5px;
+	z-index:1
+}
+.listaCliente a {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: .9em;
+    line-height: 23px;
+    padding: 6px;
+	color: #7d8e94;
+}
+.listaCliente a:hover {
+    background: #eee;
+}
+
+
+
+
+.listaObjeto{
+	position:absolute;
+	left:15px;
+	right:15px;
+	border: solid 1px #ccc;
+    background: #fff;
+	border-radius:0 0 5px 5px;
+	z-index:1
+}
+.listaObjeto a {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: .9em;
+    line-height: 23px;
+    padding: 6px;
+	color: #7d8e94;
+}
+.listaObjeto a:hover {
+    background: #eee;
+}

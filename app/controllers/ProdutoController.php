@@ -1,29 +1,45 @@
-<?php 
+<?php
+
 namespace app\controllers;
 
 use app\core\Controller;
 use app\core\Flash;
 use app\models\service\ProdutoService;
 use app\models\service\Service;
+use app\util\UtilService;
 
-class ProdutoController extends Controller{
+class ProdutoController extends Controller
+{
+
+    public function __construct()
+    {
+        $this->usuario = UtilService::getUsuario();
+        if (!$this->usuario) {
+            $this->redirect(URL_BASE . "login");
+            exit;
+        }
+    }
+
     private $tabelaCategoria = "categoria";
     private $tabela = "produto";
     private $campo = "id";
 
 
-    public function index(){
+    public function index()
+    {
         $dados["listaProduto"] = Service::lista($this->tabela);
         $dados["view"] = "Produto/index";
-        $this->load("template",$dados);
+        $this->load("template", $dados);
     }
-    public function novo(){
+    public function novo()
+    {
         $dados["listaCategoria"] = Service::lista($this->tabelaCategoria);
         $dados["view"] = "Produto/novo";
         $this->load("template", $dados);
     }
-    public function salvar(){
-        $produto = new \stdClass();      
+    public function salvar()
+    {
+        $produto = new \stdClass();
 
         $produto->id = $_POST["id"];
         $produto->descricao = $_POST["descricao"];
@@ -35,44 +51,50 @@ class ProdutoController extends Controller{
         $produto->preco_venda = $_POST["preco_venda"];
         $produto->lucro = $_POST["lucro"];
         $produto->observacao = $_POST["observacao"];
-        $produto->status = $_POST["status"];      
+        $produto->status = $_POST["status"];
 
-          
+
         Flash::setForm($produto);
-        if(ProdutoService::salvar($produto, $this->campo, $this->tabela)){
-            $this->redirect(URL_BASE."produto");
-        }else{
-            if(!$produto->id){
-                $this->redirect(URL_BASE."produto/novo");
-            }else{
-                $this->redirect(URL_BASE."editar");
+        if (ProdutoService::salvar($produto, $this->campo, $this->tabela)) {
+            $this->redirect(URL_BASE . "produto");
+        } else {
+            if (!$produto->id) {
+                $this->redirect(URL_BASE . "produto/novo");
+            } else {
+                $this->redirect(URL_BASE . "editar");
             }
-        }        
+        }
     }
-    public function editar($id){
+    public function editar($id)
+    {
         $produto = Service::get($this->tabela, $this->campo, $id);
-       
-            if(!$produto){
-                $this->redirect(URL_BASE."produto");
-            }      
-            $dados["listaCategoria"] = Service::lista($this->tabelaCategoria);
-            $dados["lista"] = $produto;
-            $dados["view"] = "produto/novo";
-            $this->load("template", $dados);
-        }
-        public function excluir($id){
-            Service::excluir($this->tabela, $this->campo, $id);
-            $this->redirect(URL_BASE."produto");            
-        }
-        public function pesquisar(){
-            $valor = $_GET["pesquisa"];
-            $campo = "nome";
-            $dados["listaProduto"] = Service::getLike($this->tabela, $campo, $valor, true);
-            $dados["view"] ="produto/index";
-            $this->load("template", $dados);
-        }
-        public function lucro(){
-            
-        }
 
+        if (!$produto) {
+            $this->redirect(URL_BASE . "produto");
+        }
+        $dados["listaCategoria"] = Service::lista($this->tabelaCategoria);
+        $dados["lista"] = $produto;
+        $dados["view"] = "produto/novo";
+        $this->load("template", $dados);
+    }
+    public function excluir($id)
+    {
+        Service::excluir($this->tabela, $this->campo, $id);
+        $this->redirect(URL_BASE . "produto");
+    }
+    public function pesquisar()
+    {
+        $valor = $_GET["pesquisa"];
+        $campo = "nome";
+        $dados["listaProduto"] = Service::getLike($this->tabela, $campo, $valor, true);
+        $dados["view"] = "produto/index";
+        $this->load("template", $dados);
+    }
+    public function lucro()
+    {
+    }
+    public function buscar($q){
+        $lista = Service::getLike("produto", "descricao", $q, true);
+        echo json_encode($lista);
+    }
 }
