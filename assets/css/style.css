@@ -196,7 +196,7 @@ body{
 .itens-menu ul li a,
 .itens-menu span a{
 	display: block;
-    padding: 1.2rem 1.2rem;
+    padding: 0.5rem 0.5rem;
     color: #a69ec7;
     text-decoration: none;
     border-bottom: solid 1px #ffffff0d;

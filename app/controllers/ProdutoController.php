@@ -90,8 +90,11 @@ class ProdutoController extends Controller
         $dados["view"] = "produto/index";
         $this->load("template", $dados);
     }
-    public function lucro()
-    {
+    public function lucro($lucro)
+    {   
+        $var1 = $_POST["preco_custo"];
+        $resultado = ($var1 * $lucro) / 100;
+        echo $resultado;
     }
     public function buscar($q){
         $lista = Service::getLike("produto", "descricao", $q, true);
