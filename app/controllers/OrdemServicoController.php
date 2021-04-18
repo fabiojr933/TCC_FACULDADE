@@ -31,9 +31,11 @@ class OrdemServicoController extends Controller
       $dados["view"] = "OrdemServico/index";
       $this->load("template", $dados);
    }
-   public function novo()
+   public function novo($id_pedido)
    {
-      $dados["pedido"] = Flash::getForm();
+      $pedido = OrdemServicoService::getPedidoFechado($id_pedido);
+      $dados["pedido"] = Flash::getForm();     
+      $dados["lista"] = $pedido;     
       $dados["view"] = "OrdemServico/novo";
       $this->load("template", $dados);
    }
@@ -73,7 +75,16 @@ class OrdemServicoController extends Controller
       // i($pedido);
       OrdemServicoService::salvar($pedido, $this->campo, $this->tabela);
       if (!$pedido->id) {
-         $this->redirect(URL_BASE . "OrdemServico/novo");
+         /**
+          * STATUS 1 = PRISMA ABERTO
+          * STATUS 2 = PRISMA FECHADO
+          */
+         $prisma = new OrdemServicoDao();
+         $prisma->fecharPrisma($pedido->id_prisma);
+         $ultimoPedido = Service::getMaximo($this->tabela, "id");        
+         $this->redirect(URL_BASE . "OrdemServico/novo/".$ultimoPedido);
+         
+        
       } else {
          $this->redirect(URL_BASE . "OrdemServico/abertura");
       }

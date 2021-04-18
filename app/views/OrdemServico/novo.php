@@ -22,25 +22,25 @@
 									<div class="col-4 d-flex">
 										<div class="cx">
 											<label class="text-label"><i class="fas fa-user"></i> Nome do cliente</label>
-											<span class="h6 mb-0">Manoel jailton sousa do nascimento</span>
+											<span class="h6 mb-0"><?php echo isset($lista->cliente) ? $lista->cliente : null ?></span>
+										</div>
+									</div>
+									<div class="col d-flex">
+										<div class="cx">
+											<label class="text-label"><i class="far fa-clock"></i> Pedido</label>
+											<span class="h6 mb-0"><?php echo isset($lista->pedido) ? $lista->pedido : null ?></span>
 										</div>
 									</div>
 									<div class="col d-flex">
 										<div class="cx">
 											<label class="text-label"><i class="fas fa-calendar"></i> Data</label>
-											<span class="h6 mb-0">29/11/2019</span>
+											<span class="h6 mb-0"><?php echo isset($lista->data_pedido) ? $lista->data_pedido : null ?></span>
 										</div>
-									</div>
-									<div class="col d-flex">
-										<div class="cx">
-											<label class="text-label"><i class="far fa-clock"></i> Hora</label>
-											<span class="h6 mb-0">09:04:25</span>
-										</div>
-									</div>
+									</div>								
 									<div class="col d-flex">
 										<div class="cx">
 											<label class="text-label"><i class="fas fa-dollar-sign"></i> Valor</label>
-											<span class="h6 mb-0">09:04:25</span>
+											<span class="h6 mb-0"><?php echo isset($lista->total_pedido) ? $lista->total_pedido : null ?></span>
 										</div>
 									</div>
 								</div>

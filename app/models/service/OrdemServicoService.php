@@ -13,4 +13,12 @@ class OrdemServicoService {
         $validacao = OrdemServicoValidacao::salvar($pedido);
         return Service::salvar($pedido, $campo, $validacao->listaErros(), $tabela);
     }
+    public function fecharPrisma($id_prisma){
+        $dao = new OrdemServicoDao();
+        return $dao->fecharPrisma($id_prisma);
+    }
+    public static function getPedidoFechado($id_pedido){
+        $dao = new OrdemServicoDao();
+        return $dao->getPedidoFechado($id_pedido);
+    }
 }
