@@ -34,6 +34,7 @@ function selecionarCliente(obj){
 	var valor = $(obj).attr("data-end");
 	$(".listaCliente").hide();
 	$("#cliente").val(nome);	
+	$("#id_cliente").val(id);
 	$("#objeto").focus();
 	$("#id_pedido").val(id);
 }

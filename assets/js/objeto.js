@@ -26,8 +26,7 @@ $(function(){
 			  }
 			  $(".listaObjeto").html(html);
 			  $(".listaObjeto").show();
-
-              console.log(data);
+             
 		 }
 	  });	
 	}) ; 
@@ -38,7 +37,7 @@ $(function(){
 	var nome = $(obj).attr("data-nome");
 	var placa = $(obj).attr("data-placa");
 	$(".listaObjeto").hide();
-	$("#objeto").val(nome);		
+	$("#objeto").val(nome);	
     $("#placa").val(placa);	
-	$("#id_objeto").val(id);
+	$("#id_objeto2").val(id);
 }

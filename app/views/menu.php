@@ -13,8 +13,8 @@
 								<li><a href="<?php echo URL_BASE."Produto/novo" ?>"><i class="far fa-list-alt"></i>Cadastro de produto</a></li>
 								<li><a href="<?php echo URL_BASE."Categoria/novo" ?>"><i class="far fa-list-alt"></i>Cadastro de categoria</a></li>
 								<li><a href="<?php echo URL_BASE."Vendedor/novo" ?>"><i class="far fa-list-alt"></i>Cadastro de Vendedor</a></li>
-								<li><a href="<?php echo URL_BASE."2" ?>"><i class="far fa-list-alt"></i>Cadastro de Mecanico</a></li>
-								<li><a href="<?php echo URL_BASE."2" ?>"><i class="far fa-list-alt"></i>Cadastro de Objeto</a></li>
+								<li><a href="<?php echo URL_BASE."Mecanico/novo" ?>"><i class="far fa-list-alt"></i>Cadastro de Mecanico</a></li>
+								<li><a href="<?php echo URL_BASE."Objeto/novo" ?>"><i class="far fa-list-alt"></i>Cadastro de Objeto</a></li>
 								<li><a href="<?php echo URL_BASE."2" ?>"><i class="far fa-list-alt"></i>Cadastro de Cond/Pagto</a></li>								
 							</ul>
 							
@@ -24,8 +24,8 @@
 								<li><a href="<?php echo URL_BASE."Produto/index" ?>"><i class="far fa-list-alt"></i>Lista de produto</a></li>
 								<li><a href="<?php echo URL_BASE."Categoria/index" ?>"><i class="far fa-list-alt"></i>Lista de Categoria</a></li>
 								<li><a href="<?php echo URL_BASE."Vendedor/index" ?>"><i class="far fa-list-alt"></i>Lista de Vendedor</a></li>
-								<li><a href="<?php echo URL_BASE."2" ?>"><i class="far fa-list-alt"></i>Lista de Mecanico</a></li>
-								<li><a href="<?php echo URL_BASE."2" ?>"><i class="far fa-list-alt"></i>Lista de Objeto</a></li>
+								<li><a href="<?php echo URL_BASE."Mecanico/index" ?>"><i class="far fa-list-alt"></i>Lista de Mecanico</a></li>
+								<li><a href="<?php echo URL_BASE."Objeto/index" ?>"><i class="far fa-list-alt"></i>Lista de Objeto</a></li>
 								<li><a href="<?php echo URL_BASE."2" ?>"><i class="far fa-list-alt"></i>Lista de Cond/Pagto</a></li>
 							</ul>
 							<span><a href=""><i class="fas fa-boxes"></i> OS</a></span>

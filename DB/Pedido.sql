@@ -1,5 +1,6 @@
 CREATE TABLE pedido
 (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, 
+id_prisma int NOT NULL,
 id_cliente INT NOT NULL, 
 id_objeto INT NOT NULL, 
 km VARCHAR(10) NULL, 
@@ -15,5 +16,6 @@ CONSTRAINT FK_id_cliente FOREIGN KEY (id_cliente) REFERENCES cliente (id),
 CONSTRAINT FK_id_objeto FOREIGN KEY (id_objeto) REFERENCES objeto (id),
 CONSTRAINT FK_id_pagamento FOREIGN KEY (id_pagamento) REFERENCES pagamento (id),
 CONSTRAINT FK_id_vendedor FOREIGN KEY (id_vendedor) REFERENCES vendedor (id),
-CONSTRAINT FK_id_mecanico FOREIGN KEY (id_mecanico) REFERENCES mecanico (id)
+CONSTRAINT FK_id_mecanico FOREIGN KEY (id_mecanico) REFERENCES mecanico (id),
+CONSTRAINT FK_id_prisma FOREIGN KEY (id_prisma) REFERENCES prisma (id)
 )

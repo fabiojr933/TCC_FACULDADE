@@ -3,11 +3,19 @@
 namespace app\controllers;
 
 use app\core\Controller;
+use app\core\Flash;
+use app\models\dao\OrdemServicoDao;
+use app\models\service\OrdemServicoService;
 use app\models\service\Service;
 use app\util\UtilService;
 
 class OrdemServicoController extends Controller
 {
+
+   private $tabelaVendedor = "vendedor";
+   private $tabelaMecanico = "mecanico";
+   private $tabela = "pedido";
+   private $campo = "id";
 
    public function __construct()
    {
@@ -25,16 +33,49 @@ class OrdemServicoController extends Controller
    }
    public function novo()
    {
+      $dados["pedido"] = Flash::getForm();
       $dados["view"] = "OrdemServico/novo";
       $this->load("template", $dados);
    }
    public function abertura()
    {
+      $dados["listaPrisma"] = OrdemServicoService::getPrisma();
+      $dados["listaVendedor"] = Service::lista($this->tabelaVendedor);
+      $dados["listaMecanico"] = Service::lista($this->tabelaMecanico);
       $dados["view"] = "OrdemServico/abertura";
       $this->load("template", $dados);
    }
-   public function buscarObjeto($obj){
+   public function buscarObjeto($obj)
+   {
       $lista = Service::getLike("objeto", "descricao", $obj, true);
       echo json_encode($lista);
+   }
+   public function salvar()
+   {
+      $pedido = new \stdClass();
+      $pedido->id = $_POST["id"];
+      $pedido->id_prisma = $_POST["prisma"];
+      $pedido->id_cliente = $_POST["id_cliente"];
+      $pedido->id_objeto = $_POST["id_objeto2"];
+      $pedido->placa = $_POST["placa"];
+      $pedido->km = $_POST["km"];
+      $pedido->id_pagamento = $_POST["pagamento"];
+      $pedido->telefone = $_POST["telefone"];
+      $pedido->id_vendedor = $_POST["vendedor"];
+      $pedido->id_mecanico = $_POST["mecanico"];
+      $pedido->pertence_deixado = $_POST["pertence_deixado"];
+      $pedido->defeito_apresentado = $_POST["defeito_apresentado"];
+      $pedido->data_pedido = date("Y-m-d");
+      $pedido->data_previsao = $_POST["data_previsao"];
+
+      Flash::setForm($pedido);
+
+      // i($pedido);
+      OrdemServicoService::salvar($pedido, $this->campo, $this->tabela);
+      if (!$pedido->id) {
+         $this->redirect(URL_BASE . "OrdemServico/novo");
+      } else {
+         $this->redirect(URL_BASE . "OrdemServico/abertura");
+      }
    }
 }

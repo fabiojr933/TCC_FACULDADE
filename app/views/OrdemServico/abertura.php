@@ -18,22 +18,25 @@
                             <div class="conteudo pt-5 mt-3">
                                 <div class="titulo mb-2"><i class="fas fa fa-plus-circle" aria-hidden="true"></i> Dados</span></div>
                                 <div class="base-caixa formulario">
-                                    <form action="<?php echo URL_BASE . "OrdemServico/novo" ?>" method="POST">
+                                    <form action="<?php echo URL_BASE . "OrdemServico/salvar" ?>" method="POST">
                                         <div class="rows">
                                             
                                         <div class="col-2">
 												<span class="text-label">PRIMA</span>												
-												<select class="form-campo" name="primas">												
-													<option value="1" >1</option>	
-													<option value="2" >2</option>												
+												<select class="form-campo" name="prisma">	
+                                            <?php foreach($listaPrisma as $prisma) {  ?>                                            
+                                                <option value="<?php echo isset($prisma->id) ? $prisma->id : null ?>"><?php echo isset($prisma->prisma) ? $prisma->prisma : null ?></option>		
+											<?php } ?>													
 												</select>
 											</div>
                                             <div class="col-10">
                                                 <span class="text-label">Cliente</span>
+                                                <input type="hidden" name="id_cliente" id="id_cliente"/>
                                                 <input type="text" name="cliente" id="cliente"  value="" placeholder="Digite do cliente" class="form-campo">
                                             </div>
                                             <div class="col-5">
                                                 <span class="text-label">Objeto</span>
+                                                <input type="hidden" name="id_objeto2" id="id_objeto2"/>
                                                 <input type="text" name="objeto" id="objeto"  value="" placeholder="Digite o objeto" class="form-campo">
                                             </div>
                                             <div class="col-4">
@@ -56,17 +59,19 @@
                                                 <input type="text" name="telefone" placeholder="Digite seu telefone" class="form-campo">
                                             </div>
                                             <div class="col-4">
-												<span class="text-label">Vendedor</span>												
-												<select class="form-campo" name="vendedor">												
-													<option value="1" >teste</option>	
-													<option value="2" >teste2</option>												
+												<span class="text-label" >Vendedor</span>												
+												<select class="form-campo" name="vendedor">	
+                                            <?php foreach($listaVendedor as $vendedor) {  ?>											
+													<option value="<?php echo isset($vendedor->id) ? $vendedor->id : null ?>"><?php echo isset($vendedor->nome) ?$vendedor->nome : null ?></option>				
+                                            <?php } ?>								
 												</select>
 											</div>	
                                             <div class="col-4">
 												<span class="text-label">Mecanico</span>												
-												<select class="form-campo" name="mecanico">												
-													<option value="1" >teste</option>	
-													<option value="2" >teste2</option>												
+												<select class="form-campo" name="mecanico">	
+                                            <?php foreach($listaMecanico as $mecanico) {  ?>                                               
+													<option value="<?php echo isset($mecanico->id) ? $mecanico->id : null ?>" ><?php echo isset($mecanico->nome) ? $mecanico->nome : null ?></option>	
+                                            <?php } ?>                                                    
 												</select>
 											</div>	
                                             <div class="col-4">
@@ -79,7 +84,7 @@
                                             </div>
                                             <div class="col-12">
                                                 <span class="text-label">Defeitos Apresentados</span>
-                                                <input type="text" name="defeitos_apresentados" value="" placeholder="Digite is defeitos apresentados" class="form-campo">
+                                                <input type="text" name="defeito_apresentado" value="" placeholder="Digite is defeitos apresentados" class="form-campo">
                                             </div>
 
                                             <div class="col-12 mt-4 pb-4">
