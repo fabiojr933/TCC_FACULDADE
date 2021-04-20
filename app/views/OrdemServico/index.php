@@ -47,8 +47,22 @@
 
 
 							<!-- PRISMA 01 -->
+                            <?php foreach($listaOs as $os) { ?>
 							<div class="col-xxl-3 col-lg-2">
-                                <div class="card bg-success text-white mb-4">
+                               
+                                <?php 
+                                $color = "warning";
+                                 if($os->status == 1){                                
+                                    $color = "success";
+                                }
+                                if($os->status == 2){                                
+                                    $color = "danger";
+                                }
+                                if($os->status == 3){                                
+                                    $color = "primary";
+                                }
+                                ?>
+                                <div class="card bg-<?php echo $color ?> text-white mb-4">
                                     <div class="card-body">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="mr-3">
@@ -64,9 +78,10 @@
                                     </div>
                                 </div>
                             </div>
+                            <?php } ?>
 							<!-- FECHA PRISMA 01 -->
 
-								<!-- PRISMA 02 -->
+								<!-- PRISMA 02 
 								<div class="col-xxl-3 col-lg-2">
                                 <div class="card bg-danger text-white mb-4">
                                     <div class="card-body">
@@ -83,10 +98,10 @@
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>        -->
 							<!-- FECHA PRISMA 02 -->
 
-								<!-- PRISMA 03 -->
+								<!-- PRISMA 03 
 								<div class="col-xxl-3 col-lg-2">
                                 <div class="card bg-secondary text-white mb-4">
                                     <div class="card-body">
@@ -103,10 +118,10 @@
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>          -->
 							<!-- FECHA PRISMA 03 -->
 
-								<!-- PRISMA 04 -->
+								<!-- PRISMA 04 
 								<div class="col-xxl-3 col-lg-2">
                                 <div class="card bg-warning text-white mb-4">
                                     <div class="card-body">
@@ -123,10 +138,10 @@
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>            -->
 							<!-- FECHA PRISMA 04 -->
 
-								<!-- PRISMA 05 -->
+								<!-- PRISMA 05 
 								<div class="col-xxl-3 col-lg-2">
                                 <div class="card bg-info text-white mb-4">
                                     <div class="card-body">
@@ -142,12 +157,12 @@
                                         <a class="small text-white stretched-link" href="<?php echo URL_BASE."OrdemServico/novo" ?>">Visualizar OS</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
-                                </div>
-                            </div>
+                                </div> 
+                            </div>           -->
 							<!-- FECHA PRISMA 05 -->
 
 
-								<!-- PRISMA 06 -->
+								<!-- PRISMA 06 
 								<div class="col-xxl-3 col-lg-2">
                                 <div class="card bg-primary text-white mb-4">
                                     <div class="card-body">
@@ -164,7 +179,7 @@
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>                    -->
 							<!-- FECHA PRISMA 06 -->
 
 

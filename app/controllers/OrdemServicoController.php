@@ -28,6 +28,8 @@ class OrdemServicoController extends Controller
 
    public function index()
    {
+      $dados["listaOs"] = Service::lista("prisma");
+     // i($r);
       $dados["view"] = "OrdemServico/index";
       $this->load("template", $dados);
    }
