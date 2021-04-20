@@ -45,7 +45,6 @@
 								</div>
 							</div>
 
-
 							<!-- PRISMA 01 -->
                             <?php foreach($listaOs as $os) { ?>
 							<div class="col-xxl-3 col-lg-2">
@@ -65,9 +64,9 @@
                                 <div class="card bg-<?php echo $color ?> text-white mb-4">
                                     <div class="card-body">
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <div class="mr-3">
-                                                <div class="text-white-75 small">Nome Cliente</div>
-                                                <div class="text-lg font-weight-bold">R$ 540,00</div>
+                                            <div class="mr-2">                                            
+                                                <div class="text-white-75 small"><?php echo isset($os->nome_cliente) ? $os->nome_cliente : "Nome ente"?></div>
+                                                <div class="text-lg font-weight-bold"><?php echo isset($os->total_pedido) ? "R$: ". $os->total_pedido : "Valor: R$: 00,00"?></div>
                                             </div>
                                             <i class="feather-xl text-white-50" data-feather="check-square"></i>
                                         </div>

@@ -20,5 +20,9 @@ class OrdemServicoService {
     public static function getPedidoFechado($id_pedido){
         $dao = new OrdemServicoDao();
         return $dao->getPedidoFechado($id_pedido);
+    }    
+    public function getPedidoPrisma(){
+        $dao = new OrdemServicoDao();
+        return $dao->getPedidoPrisma();
     }
 }

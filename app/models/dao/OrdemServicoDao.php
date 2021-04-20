@@ -32,4 +32,17 @@ class OrdemServicoDao extends Model{
          $qry->execute();
          return $qry->fetch(\PDO::FETCH_OBJ);
     }
+    public function getPedidoPrisma(){
+        $sql = "SELECT a.id as id_prisma,
+        c.id as id_cliente,
+        a.status,
+        c.nome as nome_cliente,
+        b.total_pedido 
+        FROM prisma A
+        LEFT join pedido b on a.id = b.id_prisma
+        LEFT join cliente c on b.id_cliente = c.id";       
+        $qry = $this->db->prepare($sql);
+        $qry->execute();
+        return $qry->fetchAll(\PDO::FETCH_OBJ);
+    }
 }
