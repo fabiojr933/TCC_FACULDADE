@@ -2,6 +2,7 @@
 namespace app\models\service;
 
 use app\models\dao\OrdemServicoDao;
+use app\models\validacao\OrdemServicoItemValidacao;
 use app\models\validacao\OrdemServicoValidacao;
 
 class OrdemServicoService {
@@ -17,6 +18,10 @@ class OrdemServicoService {
         $validacao = OrdemServicoValidacao::salvar($pedido);
         return Service::salvar($pedido, $campo, $validacao->listaErros(), $tabela);
     }
+    public static function salvarItemPedido($item, $campo, $tabela){
+        $validacao = OrdemServicoItemValidacao::salvar($item);
+        return Service::salvar($item, $campo, $validacao->listaErros(), $tabela);
+    }
     public function fecharPrisma($id_prisma){
         $dao = new OrdemServicoDao();
         return $dao->fecharPrisma($id_prisma);
@@ -25,6 +30,10 @@ class OrdemServicoService {
         $dao = new OrdemServicoDao();
         return $dao->getPedidoFechado($id_pedido);
     }    
+    public static function getPedidoFechado2($id_pedido){
+        $dao = new OrdemServicoDao();
+        return $dao->getPedidoFechado2($id_pedido);
+    } 
     public function getPedidoPrisma(){
         $dao = new OrdemServicoDao();
         return $dao->getPedidoPrisma();
@@ -32,5 +41,5 @@ class OrdemServicoService {
     public function getLimit(){
         $dao = new OrdemServicoDao();
         return $dao->getLimit();
-    }
+    }       
 }

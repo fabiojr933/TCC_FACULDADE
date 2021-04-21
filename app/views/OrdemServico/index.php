@@ -65,12 +65,12 @@
                                
                                  if($os->status == 1){                                
                                     $color = "success";
-                                    $acao = "abertura";   
+                                    $acao = "abertura/".$os->id_prisma;   
                                     $nome = "Abrir uma ordem de serviço";                                
                                 }
                                 if($os->status == 2){                                
                                     $color = "danger";
-                                    $acao = "novo";   
+                                    $acao = "novo/".$os->id_pedido;   
                                     $nome = "Visualizar ordem de serviço";                               
                                 }
                                 if($os->status == 3){                                
@@ -90,7 +90,7 @@
                                         </div>
                                     </div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                           <a class= "small text-white stretched-link" id="mostrar"  href="<?php echo URL_BASE."OrdemServico/".$acao."/".$os->id_prisma."/".$os->id_pedido ?>"><?php echo $nome ?></a>                           
+                           <a class= "small text-white stretched-link" id="mostrar"  href="<?php echo URL_BASE."OrdemServico/".$acao?>"><?php echo $nome ?></a>                           
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>

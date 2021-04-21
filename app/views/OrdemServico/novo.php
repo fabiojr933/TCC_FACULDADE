@@ -11,7 +11,6 @@
 
 
 
-
 			<section class="conteudo">
 				<div class="">
 					<div class="width-100 d-flex">
@@ -22,25 +21,25 @@
 									<div class="col-4 d-flex">
 										<div class="cx">
 											<label class="text-label"><i class="fas fa-user"></i> Nome do cliente</label>
-											<span class="h6 mb-0"><?php echo isset($lista->cliente) ? $lista->cliente : null ?></span>
+											<span class="h6 mb-0"><?php echo isset($pedido2->cliente) ? $pedido2->cliente : null ?></span>
 										</div>
 									</div>
 									<div class="col d-flex">
 										<div class="cx">
 											<label class="text-label"><i class="far fa-clock"></i> Pedido</label>
-											<span class="h6 mb-0"><?php echo isset($lista->pedido) ? $lista->pedido : null ?></span>
+											<span class="h6 mb-0" ><?php echo isset($pedido2->pedido) ? $pedido2->pedido : null ?></span>
 										</div>
 									</div>
 									<div class="col d-flex">
 										<div class="cx">
 											<label class="text-label"><i class="fas fa-calendar"></i> Data</label>
-											<span class="h6 mb-0"><?php echo databr(isset($lista->data_pedido) ?  $lista->data_pedido : null) ?></span>
+											<span class="h6 mb-0"><?php echo databr(isset($pedido2->data_pedido) ?  $pedido2->data_pedido : null) ?></span>
 										</div>
-									</div>								
+									</div>
 									<div class="col d-flex">
 										<div class="cx">
 											<label class="text-label"><i class="fas fa-dollar-sign"></i> Valor</label>
-											<span class="h6 mb-0"><?php echo removerFormatacaoNumero(isset($lista->total_pedido) ? $lista->total_pedido : null) ?></span>
+											<span class="h6 mb-0"><?php echo removerFormatacaoNumero(isset($pedido2->total_pedido) ? $pedido2->total_pedido : null) ?></span>
 										</div>
 									</div>
 								</div>
@@ -74,8 +73,8 @@
 												<input type="text" id="valor" value="" class="form-campo">
 											</div>
 											<div class="col-2 mt-3 pt-2">
-												<input type="hidden" id="id_produto"/>
-												<input type="submit" value="Inserir" class="btn btn-azul width-100">
+												<input type="hidden" id="id_produto" />
+												<input type="button" id="btnInserir" value="Inserir" class="btn btn-azul width-100">
 											</div>
 										</div>
 									</form>
@@ -95,16 +94,18 @@
 													<th width="15%" align="center">Excluir</th>
 												</tr>
 											</thead>
-											<tbody>
-												<tr class="ativo">
-													<td>1</td>
-													<td>1</td>
-													<td>Café350g</td>
-													<td align="center">R$ 3.00</td>
-													<td align="center">1</td>
-													<td align="center">R$ 3</td>
-													<td align="center"><a href="index.php?link=3&amp;del=S&amp;i=59" class="btn btn-outline-vermelho">Excluir</a></td>
-												</tr>
+											<tbody>  
+												<?php foreach ($lista as $item) {  ?>
+													<tr class="ativo">
+														<td><?php echo $item->id_item ?></td>
+														<td><?php echo $item->id_produto ?></td>
+														<td><?php echo $item->produto ?></td>
+														<td align="center">R$ <?php echo $item->valor_item ?></td>
+														<td align="center"><?php echo $item->qtde_item ?></td>
+														<td align="center">R$ <?php echo $item->valor_item ?></td>
+														<td align="center"><a href="javascript:;" onclick="return excluir(this)" data-entidade="OrdemServico" data-id="<?php $item->id_item ?>" class="btn btn-outline-vermelho">Excluir</a></td>
+													</tr>
+												<?php } ?>  
 											</tbody>
 										</table>
 									</div>

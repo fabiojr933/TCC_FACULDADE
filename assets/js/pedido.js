@@ -40,3 +40,6 @@ function selecionarProduto(obj){
 	$("#id_produto").val(id);
 }
 
+
+
+

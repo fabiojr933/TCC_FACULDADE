@@ -21,9 +21,23 @@ class OrdemServicoDao extends Model{
         $qry = $this->db->prepare($sql);
         $qry->bindValue(":ID_PRISMA",$id_prisma);
         $qry->execute();
-    }    
+    } 
+    public function getPedidoFechado2($id_pedido){
+          $sql = "SELECT  p.id as pedido,
+                              p.id_cliente as id_cliente,
+                              c.nome as cliente,
+                              p.data_pedido,
+                              p.total_pedido
+                              FROM pedido p
+                              inner join cliente c on p.id_cliente = c.id                                                   
+                                                    where p.id = $id_pedido";      
+            
+        $qry = $this->db->prepare($sql);
+        $qry->execute();
+        return $qry->fetch(\PDO::FETCH_OBJ);
+    }          
     public function getPedidoFechado($id_pedido){
-        $sql = "SELECT  p.id as pedido,
+  /*      $sql = "SELECT  p.id as pedido,
                         p.id_cliente as id_cliente,
                         c.nome as cliente,
                         p.data_pedido,
@@ -31,16 +45,34 @@ class OrdemServicoDao extends Model{
                         FROM pedido p
                         inner join cliente c on p.id_cliente = c.id
                                               AND p.id = $id_pedido
-                                              where p.id = $id_pedido";
+                                              where p.id = $id_pedido"; */
+
+        $sql = "SELECT  p.id as pedido,
+                p.id_cliente,
+                e.id as id_item,
+                a.nome as cliente,
+                b.id as id_produto,
+                b.descricao as produto,
+                p.data_pedido,
+                p.total_pedido,
+                e.VALOR as valor_item,
+                e.QTDE as qtde_item
+                
+                FROM pedido p      
+                inner join itenpedido e on p.id = e.ID_PEDIDO      
+                inner join cliente a on p.id_cliente = a.id
+                inner join produto b on e.ID_PRODUTO = b.id
+                WHERE p.id = $id_pedido";
          $qry = $this->db->prepare($sql);
          $qry->execute();
-         return $qry->fetch(\PDO::FETCH_OBJ);
+         return $qry->fetchAll(\PDO::FETCH_OBJ);
     }
     public function getPedidoPrisma(){
         $sql = "SELECT a.id as id_prisma,
         c.id as id_cliente,
         a.status,
         c.nome as nome_cliente,
+        b.id as id_pedido,
         b.total_pedido 
         FROM prisma A
         LEFT join pedido b on a.id = b.id_prisma
@@ -60,5 +92,5 @@ class OrdemServicoDao extends Model{
                 join cliente b on a.id_cliente = b.id
                 LIMIT 3";
                 return $this->select($this->db, $sql);
-    }
+    }   
 }
