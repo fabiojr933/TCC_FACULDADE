@@ -34,13 +34,13 @@
 									<div class="col d-flex">
 										<div class="cx">
 											<label class="text-label"><i class="fas fa-calendar"></i> Data</label>
-											<span class="h6 mb-0"><?php echo isset($lista->data_pedido) ? $lista->data_pedido : null ?></span>
+											<span class="h6 mb-0"><?php echo databr(isset($lista->data_pedido) ?  $lista->data_pedido : null) ?></span>
 										</div>
 									</div>								
 									<div class="col d-flex">
 										<div class="cx">
 											<label class="text-label"><i class="fas fa-dollar-sign"></i> Valor</label>
-											<span class="h6 mb-0"><?php echo isset($lista->total_pedido) ? $lista->total_pedido : null ?></span>
+											<span class="h6 mb-0"><?php echo removerFormatacaoNumero(isset($lista->total_pedido) ? $lista->total_pedido : null) ?></span>
 										</div>
 									</div>
 								</div>

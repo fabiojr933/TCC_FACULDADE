@@ -29,8 +29,8 @@ class OrdemServicoController extends Controller
    public function index()
    {
       $prisma =  new OrdemServicoService(); 
-      $dados["listaOs"] = $prisma->getPedidoPrisma();
-      // $dados["listaOs"] = Service::lista("prisma");     
+      $dados["listaOs"] = $prisma->getPedidoPrisma();  
+      $dados["listaTop"] = $prisma->getLimit();  
       $dados["view"] = "OrdemServico/index";
       $this->load("template", $dados);
    }
@@ -42,9 +42,9 @@ class OrdemServicoController extends Controller
       $dados["view"] = "OrdemServico/novo";
       $this->load("template", $dados);
    }
-   public function abertura()
+   public function abertura($id_prisma)
    {
-      $dados["listaPrisma"] = OrdemServicoService::getPrisma();
+      $dados["listaPrisma"] = OrdemServicoService::getPrisma2($id_prisma);
       $dados["listaVendedor"] = Service::lista($this->tabelaVendedor);
       $dados["listaMecanico"] = Service::lista($this->tabelaMecanico);
       $dados["view"] = "OrdemServico/abertura";

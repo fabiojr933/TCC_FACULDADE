@@ -45,15 +45,15 @@
 											</div>									
 											<div class="col-4">
 												<span class="text-label">Preço Custo</span>
-												<input type="text" name="preco_custo" id="preco_custo" value="<?php echo isset($lista->preco_custo) ? $lista->preco_venda : null ?>" placeholder="Digite seu endereço" class="form-campo">
+												<input type="text" name="preco_custo" id="preco_custo" value="<?php echo moedaBr(isset($lista->preco_custo) ? $lista->preco_venda : null )?>" placeholder="Digite seu endereço" class="form-campo">
 											</div>
 											<div class="col-4">
 												<span class="text-label">Lucro (%)</span>
-												<input type="text" name="lucro" id="lucro" value="<?php echo isset($lista->lucro) ? $lista->lucro : null ?>" placeholder="Digite seu Preço Custo" class="form-campo">
+												<input type="text" name="lucro" id="lucro" value="<?php echo moedaBr(isset($lista->lucro) ? $lista->lucro : null )?>" placeholder="Digite seu Preço Custo" class="form-campo">
 											</div>
 											<div class="col-4">
 												<span class="text-label">Preço Venda</span>
-												<input type="text" name="preco_venda" id="preco_venda" value="<?php echo isset($lista->preco_venda) ? $lista->preco_venda : null ?>" placeholder="Digite Preço Venda" class="form-campo">
+												<input type="text" name="preco_venda" id="preco_venda" value="<?php echo moedaBr(isset($lista->preco_venda) ? $lista->preco_venda : null )?>" placeholder="Digite Preço Venda" class="form-campo">
 											</div>
 											<div class="col-8">
 												<span class="text-label">Observação</span>

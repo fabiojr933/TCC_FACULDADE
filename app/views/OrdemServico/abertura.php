@@ -25,7 +25,7 @@
 												<span class="text-label">PRIMA</span>												
 												<select class="form-campo" name="prisma">	
                                             <?php foreach($listaPrisma as $prisma) {  ?>                                            
-                                                <option value="<?php echo isset($prisma->id) ? $prisma->id : null ?>"><?php echo isset($prisma->prisma) ? $prisma->prisma : null ?></option>		
+                                                <option value="<?php echo isset($prisma->id) ? $prisma->id : null ?>" <?php echo $os->id == $listaPrisma->id ? "selected" : null ?> ><?php echo isset($prisma->prisma) ? $prisma->prisma : null ?></option>		
 											<?php } ?>													
 												</select>
 											</div>

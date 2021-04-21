@@ -8,6 +8,10 @@ class OrdemServicoDao extends Model{
         $sql = "SELECT * FROM PRISMA A WHERE A.STATUS <> '2'"; 
         return $this->select($this->db, $sql);
     }
+    public function getPrisma2($id){
+        $sql = "SELECT * FROM PRISMA A WHERE A.ID = $id"; 
+        return $this->select($this->db, $sql);
+    }
     public function fecharPrisma($id_prisma){
          /**
           * STATUS 1 = PRISMA ABERTO
@@ -40,9 +44,21 @@ class OrdemServicoDao extends Model{
         b.total_pedido 
         FROM prisma A
         LEFT join pedido b on a.id = b.id_prisma
-        LEFT join cliente c on b.id_cliente = c.id";       
+        LEFT join cliente c on b.id_cliente = c.id
+        order by a.id asc";       
         $qry = $this->db->prepare($sql);
         $qry->execute();
         return $qry->fetchAll(\PDO::FETCH_OBJ);
+    }
+    public function getLimit(){
+        $sql = "select 
+                a.id as id_pedido,
+                a.data_pedido,
+                b.nome as nome_cliente,
+                a.total_pedido
+                from pedido A
+                join cliente b on a.id_cliente = b.id
+                LIMIT 3";
+                return $this->select($this->db, $sql);
     }
 }

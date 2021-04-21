@@ -14,36 +14,45 @@
 											
 											<thead>
 											<tr>
-												<th align="left"  width="320">Cliente:</th>
+                                                 <th align="left"  width="50">pedido:</th>
+												<th align="center"  width="270">Cliente:</th>
 												<th align="center" width="50">Data:</th>
 												<th align="center" width="50">Total:</th>
 												<th align="center" width="30">Açao</th>
 											</tr>
 											</thead>
-											<tbody>																
+											<tbody>		
+                                            <?php foreach($listaTop as $top) { ?>														
 												<tr>
-													<td>Nome do cliente</td>
-													<td align="center">30/11/2019</td>
-													<td align="center">R$100,00</td>
-													<td align="center"><a href="itens-pedido.html" class="btn btn-outline-roxo">Ver mais</a></td>
-												 </tr>														
-												<tr>
-													<td>Nome do cliente</td>
-													<td align="center">30/11/2019</td>
-													<td align="center">R$100,00</td>
-													<td align="center"><a href="itens-pedido.html" class="btn btn-outline-roxo">Ver mais</a></td>
-												 </tr>														
-												<tr>
-													<td>Nome do cliente</td>
-													<td align="center">30/11/2019</td>
-													<td align="center">R$100,00</td>
-													<td align="center"><a href="itens-pedido.html" class="btn btn-outline-roxo">Ver mais</a></td>
+                                                    <td ><?php echo $top->id_pedido ?></td>
+													<td align="left"><?php echo $top->nome_cliente ?></td>
+													<td align="left"><?php echo databr($top->data_pedido) ?></td>
+													<td align="left"><?php echo $top->total_pedido ?></td>
+													<td align="center"><a href="<?php echo URL_BASE."OrdemServico/novo/".$top->id_pedido ?>" class="btn btn-outline-roxo">Ver mais</a></td>
 												 </tr>	
+                                            <?php } ?>
 											</tbody>											
 										</table>
-									</div>
-								</div>
+									</div>                                    
+								</div>                                
+                                <div class="col-lg-4">                          
+                                    <div class="card-body">  <h5 style="text-align:center">Legenda</h5>                                      
+                                        <div class="progress-box progress-1">
+                                            <h6 class="por-title">Disponivel</h6>                                           
+                                            <div class="progress mb-2" style="height: 8px;">
+                                                <div class="card bg-success"  style="width: 100%;"></div>
+                                            </div>
+                                        </div>
+                                        <div class="progress-box progress-2">
+                                            <h6 class="por-title">Ocupado</h6>                                           
+                                            <div class="card bg-danger" style="height: 8px;">
+                                                <div class="progress-bar bg-flat-color-2" style="width: 100%;" ></div>
+                                            </div>
+                                        </div>                                                                               
+                                    </div> <!-- /.card-body -->
+                                </div>
 							</div>
+                           
 
 							<!-- PRISMA 01 -->
                             <?php foreach($listaOs as $os) { ?>
@@ -51,139 +60,48 @@
                                
                                 <?php 
                                 $color = "warning";
+                                $acao = "";
+                                $nome = "";
+                               
                                  if($os->status == 1){                                
                                     $color = "success";
+                                    $acao = "abertura";   
+                                    $nome = "Abrir uma ordem de serviço";                                
                                 }
                                 if($os->status == 2){                                
                                     $color = "danger";
+                                    $acao = "novo";   
+                                    $nome = "Visualizar ordem de serviço";                               
                                 }
                                 if($os->status == 3){                                
                                     $color = "primary";
                                 }
+                                
                                 ?>
                                 <div class="card bg-<?php echo $color ?> text-white mb-4">
                                     <div class="card-body">
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <div class="mr-2">                                            
-                                                <div class="text-white-75 small"><?php echo isset($os->nome_cliente) ? $os->nome_cliente : "Nome ente"?></div>
+                                            <div class="mr-2">   
+                                            <div class="text-white-78 small">Prisma: <?php echo isset($os->id_prisma) ? $os->id_prisma : null?></div>                                         
+                                                <div class="text-white-75 small"><?php echo isset($os->nome_cliente) ? $os->nome_cliente : "Nome cliente"?></div>
                                                 <div class="text-lg font-weight-bold"><?php echo isset($os->total_pedido) ? "R$: ". $os->total_pedido : "Valor: R$: 00,00"?></div>
                                             </div>
                                             <i class="feather-xl text-white-50" data-feather="check-square"></i>
                                         </div>
                                     </div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="<?php echo URL_BASE."OrdemServico/novo" ?>">Visualizar OS</a>
+                           <a class= "small text-white stretched-link" id="mostrar"  href="<?php echo URL_BASE."OrdemServico/".$acao."/".$os->id_prisma."/".$os->id_pedido ?>"><?php echo $nome ?></a>                           
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
                             </div>
                             <?php } ?>
-							<!-- FECHA PRISMA 01 -->
-
-								<!-- PRISMA 02 
-								<div class="col-xxl-3 col-lg-2">
-                                <div class="card bg-danger text-white mb-4">
-                                    <div class="card-body">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="mr-3">
-                                                <div class="text-white-75 small">Nome Cliente</div>
-                                                <div class="text-lg font-weight-bold">R$ 780,78</div>
-                                            </div>
-                                            <i class="feather-xl text-white-50" data-feather="check-square"></i>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="<?php echo URL_BASE."OrdemServico/novo" ?>">Visualizar OS</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>        -->
-							<!-- FECHA PRISMA 02 -->
-
-								<!-- PRISMA 03 
-								<div class="col-xxl-3 col-lg-2">
-                                <div class="card bg-secondary text-white mb-4">
-                                    <div class="card-body">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="mr-3">
-                                                <div class="text-white-75 small">Nome Cliente</div>
-                                                <div class="text-lg font-weight-bold">R$ 150,50</div>
-                                            </div>
-                                            <i class="feather-xl text-white-50" data-feather="check-square"></i>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="<?php echo URL_BASE."OrdemServico/novo" ?>">Visualizar OS</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>          -->
-							<!-- FECHA PRISMA 03 -->
-
-								<!-- PRISMA 04 
-								<div class="col-xxl-3 col-lg-2">
-                                <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="mr-3">
-                                                <div class="text-white-75 small">Nome Cliente</div>
-                                                <div class="text-lg font-weight-bold">R$ 8900,99</div>
-                                            </div>
-                                            <i class="feather-xl text-white-50" data-feather="check-square"></i>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="<?php echo URL_BASE."OrdemServico/novo" ?>">Visualizar OS</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>            -->
-							<!-- FECHA PRISMA 04 -->
-
-								<!-- PRISMA 05 
-								<div class="col-xxl-3 col-lg-2">
-                                <div class="card bg-info text-white mb-4">
-                                    <div class="card-body">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="mr-3">
-                                                <div class="text-white-75 small">Nome Cliente</div>
-                                                <div class="text-lg font-weight-bold">R$ 1250,90</div>
-                                            </div>
-                                            <i class="feather-xl text-white-50" data-feather="check-square"></i>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="<?php echo URL_BASE."OrdemServico/novo" ?>">Visualizar OS</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div> 
-                            </div>           -->
-							<!-- FECHA PRISMA 05 -->
-
-
-								<!-- PRISMA 06 
-								<div class="col-xxl-3 col-lg-2">
-                                <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="mr-3">
-                                                <div class="text-white-75 small">Nome Cliente</div>
-                                                <div class="text-lg font-weight-bold">R$ 240,40</div>
-                                            </div>
-                                            <i class="feather-xl text-white-50" data-feather="check-square"></i>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="<?php echo URL_BASE."OrdemServico/novo" ?>">Visualizar OS</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>                    -->
-							<!-- FECHA PRISMA 06 -->
-
+							
 
 							</div>
 						</div>
 					</div>
 				  </div>
 				</div>
+
+    

@@ -9,6 +9,10 @@ class OrdemServicoService {
         $dao = new OrdemServicoDao();
         return $dao->getPrisma();
     }
+    public static function getPrisma2($id){
+        $dao = new OrdemServicoDao();
+        return $dao->getPrisma2($id);
+    }
     public static function salvar($pedido, $campo, $tabela){
         $validacao = OrdemServicoValidacao::salvar($pedido);
         return Service::salvar($pedido, $campo, $validacao->listaErros(), $tabela);
@@ -24,5 +28,9 @@ class OrdemServicoService {
     public function getPedidoPrisma(){
         $dao = new OrdemServicoDao();
         return $dao->getPedidoPrisma();
+    }
+    public function getLimit(){
+        $dao = new OrdemServicoDao();
+        return $dao->getLimit();
     }
 }
