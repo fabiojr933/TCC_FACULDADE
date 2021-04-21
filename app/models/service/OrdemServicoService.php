@@ -17,11 +17,7 @@ class OrdemServicoService {
     public static function salvar($pedido, $campo, $tabela){
         $validacao = OrdemServicoValidacao::salvar($pedido);
         return Service::salvar($pedido, $campo, $validacao->listaErros(), $tabela);
-    }
-    public static function salvarItemPedido($item, $campo, $tabela){
-        $validacao = OrdemServicoItemValidacao::salvar($item);
-        return Service::salvar($item, $campo, $validacao->listaErros(), $tabela);
-    }
+    }   
     public function fecharPrisma($id_prisma){
         $dao = new OrdemServicoDao();
         return $dao->fecharPrisma($id_prisma);

@@ -56,6 +56,7 @@ class OrdemServicoDao extends Model{
                 p.data_pedido,
                 p.total_pedido,
                 e.VALOR as valor_item,
+                e.subtotal,
                 e.QTDE as qtde_item
                 
                 FROM pedido p      
@@ -93,4 +94,20 @@ class OrdemServicoDao extends Model{
                 LIMIT 3";
                 return $this->select($this->db, $sql);
     }   
+    public function inserirItemPedido($id_pedido, $id_produto, $valor, $qtde, $subtotal){
+        $sql = "INSERT INTO ITENPEDIDO SET
+                    ID_PEDIDO = :ID_PEDIDO,
+                    ID_PRODUTO = :ID_PRODUTO,
+                    VALOR = :VALOR,
+                    QTDE = :QTDE
+                    SUBTOTAL = :SUBTOTAL";
+        $qry = $this->db->prepare($sql);
+        $qry->bindValue(":ID_PEDIDO", $id_pedido);
+        $qry->bindValue(":ID_PRODUTO", $id_produto);
+        $qry->bindValue(":VALOR", $valor);
+        $qry->bindValue(":QTDE", $qtde);
+        $qry->bindValue(":SUBTOTAL", $subtotal);
+        $qry->execute();
+        return $this->db->lastInsertId(); 
+    }
 }

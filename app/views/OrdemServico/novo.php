@@ -8,7 +8,7 @@
 			$this->verMSG();
 			$this->verERRO();
 			?>
-
+					<?php var_dump($pedido2->pedido) ?>
 
 
 			<section class="conteudo">
@@ -28,6 +28,7 @@
 										<div class="cx">
 											<label class="text-label"><i class="far fa-clock"></i> Pedido</label>
 											<span class="h6 mb-0" ><?php echo isset($pedido2->pedido) ? $pedido2->pedido : null ?></span>
+											<input type="hidden" name="id_pedido2" value="<?php $pedido2->pedido ?>"/>  
 										</div>
 									</div>
 									<div class="col d-flex">
@@ -51,7 +52,7 @@
 							<div class="base-home pt-9">
 								<span class="titulo pb-6 pt-6"><i class="far fa-list-alt"></i> Itens do pedido</span>
 								<div class="formulario">
-									<form action="" enctype="multipart/form-data">
+									<form action="" method="" >
 										<div class="rows p-3">
 											<div class="col-6 position-relative">
 												<div class="d-flex  text-justify-between items-center">
@@ -66,14 +67,14 @@
 											</div>
 											<div class="col-2">
 												<span class="text-label">Quantidade</span>
-												<input type="number" id="qtde" value="1" class="form-campo">
+												<input type="number" name="qtde" id="qtde" value="1" class="form-campo">
 											</div>
 											<div class="col-2">
 												<span class="text-label">Valor</span>
-												<input type="text" id="valor" value="" class="form-campo">
+												<input type="text" name="valor" id="valor" class="form-campo">
 											</div>
 											<div class="col-2 mt-3 pt-2">
-												<input type="hidden" id="id_produto" />
+												<input type="hidden" name="id_produto" id="id_produto" />
 												<input type="button" id="btnInserir" value="Inserir" class="btn btn-azul width-100">
 											</div>
 										</div>
@@ -94,7 +95,7 @@
 													<th width="15%" align="center">Excluir</th>
 												</tr>
 											</thead>
-											<tbody>  
+											<tbody id="lista_itens">  
 												<?php foreach ($lista as $item) {  ?>
 													<tr class="ativo">
 														<td><?php echo $item->id_item ?></td>
@@ -103,7 +104,7 @@
 														<td align="center">R$ <?php echo $item->valor_item ?></td>
 														<td align="center"><?php echo $item->qtde_item ?></td>
 														<td align="center">R$ <?php echo $item->valor_item ?></td>
-														<td align="center"><a href="javascript:;" onclick="return excluir(this)" data-entidade="OrdemServico" data-id="<?php $item->id_item ?>" class="btn btn-outline-vermelho">Excluir</a></td>
+														<td align="center"><a href="javascript:;" onclick="return excluir(this)" data-entidade="item" data-id="<?php $item->id_item ?>" class="btn btn-outline-vermelho">Excluir</a></td>
 													</tr>
 												<?php } ?>  
 											</tbody>
@@ -126,3 +127,7 @@
 	</div>
 </div>
 </div>
+
+<script>
+	var id_pedido = <?php echo $pedido2->pedido ?>;
+</script>

@@ -36,8 +36,7 @@ class OrdemServicoController extends Controller
       $this->load("template", $dados);
    }
    public function novo($id_pedido)
-   {      
-      
+   {  
       $pedido = OrdemServicoService::getPedidoFechado($id_pedido);
       $pedido2 = new OrdemServicoService();
       $dados["pedido"] = Flash::getForm();     
@@ -95,17 +94,5 @@ class OrdemServicoController extends Controller
       } else {
          $this->redirect(URL_BASE . "OrdemServico/abertura");
       }
-   }
-   public function salvarItemPedido(){
-      $item = new \stdClass();
-      $item->id- null;
-      $item->id_produto = $_POST["id_produto"];
-      $item->id_pedido = $_POST["id_pedido"];
-      $item->valor = $_POST["valor"];
-      $item->qtde = $_POST["qtde"];
-      $item->subtotal = $item->valor * $item->qtde;
-      Flash::setForm($item);
-      OrdemServicoService::salvarItemPedido($item, $this->campo, $this->tabelaItemPedido);
-
-   }
+   }      
 }
