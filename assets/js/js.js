@@ -31,6 +31,7 @@ function excluir(obj){
 	var entidade  = $(obj).attr('data-entidade');
 	var id  = $(obj).attr('data-id');	
 	if(confirm('Deseja realmente excluir ?')){
+		console.log(id);
 		window.location.href = base_url + entidade +"/excluir/" + id;	
 	}
 }

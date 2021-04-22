@@ -110,4 +110,12 @@ class OrdemServicoDao extends Model{
         $qry->execute();
         return $this->db->lastInsertId(); 
     }
+    public function getItem($id){
+        $sql = "SELECT a.id_pedido
+        FROM itenpedido a
+        where a.id = $id";
+        $qry = $this->db->prepare($sql);
+        $qry->execute();
+        return $qry->fetchAll(\PDO::FETCH_OBJ);
+    }
 }

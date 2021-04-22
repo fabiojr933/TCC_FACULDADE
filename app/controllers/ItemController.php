@@ -12,8 +12,8 @@ class ItemController extends Controller{
    private $campo = "id";
 
 
-   public function salvar(){
-    $itenpedido = new \stdClass();
+   public function salvar(){ 
+    $itenpedido = new \stdClass(); 
     $itenpedido->id = null;
     $itenpedido->id_produto = $_POST["id_produto"];
     $itenpedido->id_pedido = $_POST["id_pedido"];
@@ -26,9 +26,11 @@ class ItemController extends Controller{
     $lista = OrdemServicoService::getPedidoFechado($itenpedido->id_pedido); 
     echo json_encode($lista);
  }
- public function excluir($id){   
-    $pedido = $_POST["id_pedido2"];
-    Service::excluir($this->tabela, $this->campo, $id);
-    $this->redirect(URL_BASE."OrdemServico/novo/");
+ public function excluir($id){  
+
+   $pedido = ItemService::getItem($id);     
+   Service::excluir($this->tabela, $this->campo, $id);
+   $this->redirect(URL_BASE."OrdemServico/novo/".$pedido[0]->id_pedido);
+    
  }
 }
