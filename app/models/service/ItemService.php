@@ -13,4 +13,10 @@ class ItemService {
         $dao = new OrdemServicoDao();
         return $dao->getItem($id);
     }
+    public static function atualizaPedido($id_pedido)
+    {
+        $soma = Service::getSoma("itenpedido", "subtotal", "id_pedido", $id_pedido);
+        Service::editar(["total_pedido"=>$soma, "id"=>$id_pedido], "id", "pedido");
+        
+    }
 }

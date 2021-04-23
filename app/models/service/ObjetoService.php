@@ -8,4 +8,5 @@ class ObjetoService{
         $validacao = ObjetoValidacao::salvar($objeto);
         return Service::salvar($objeto, $campo, $validacao->listaErros(), $tabela);
     }
+   
 }

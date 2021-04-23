@@ -25,9 +25,9 @@ $(function(){
 
 	function lista_itens(data){    
 		html = "<tr>";
-		var total_entrada = 0.00;
+		var total_pedido = 00;
 		for(var i in data){ 
-			total_entrada += parseFloat(data[i].valor);
+			total_pedido += parseFloat(data[i].subtotal);
 			var j = parseInt(i)+1;
 			html += '<td align="left">' + data[i].id_item  + '</td>' + 	
 				'<td align="left">' + data[i].id_produto + '</td>' + 
@@ -35,8 +35,9 @@ $(function(){
 				'<td align="left">' + data[i].valor_item + '</td>' + 
 				'<td align="left">' + data[i].qtde_item + '</td>' + 
 				'<td align="left">' + data[i].subtotal + '</td>' +
-				'<td align="center"><a href="javascript:;" onclick="return excluir(this)"data-entidade="item" data-id="' +data[i].id_item+'" class="btn btn-outline-vermelho" >Excluir</a></td></tr>';
+				'<td align="center"><a href="javascript:;" onclick="return excluir_item(this)"data-entidade="item" data-id="' +data[i].id_item+'" class="btn btn-outline-vermelho" >Excluir</a></td></tr>';
 				  }
+		 $("#total_pedido").html(html);
 		 $("#lista_itens").html(html);  
 	 }
 	 
@@ -81,7 +82,21 @@ function selecionarProduto(obj){
 	$("#id_produto").val(id);
 }
 
-
+function excluir_item(obj){
+		var entidade  = $(obj).attr('data-entidade');
+		var id  = $(obj).attr('data-id');	
+	if(confirm('Deseja realmente excluir ?')){
+		$.ajax({
+			url: base_url + entidade +"/excluir/" + id + "/" + $id_pedido,
+			type: "POST",
+			dataType: "json",
+			data:{},
+			success: function (data){
+				lista_itens(data);
+			}
+		 });		
+	}
+}
 
 
 

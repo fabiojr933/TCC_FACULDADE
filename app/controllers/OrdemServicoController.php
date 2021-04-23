@@ -40,8 +40,8 @@ class OrdemServicoController extends Controller
       $pedido = OrdemServicoService::getPedidoFechado($id_pedido);
       $pedido2 = new OrdemServicoService();
       $dados["pedido"] = Flash::getForm();     
-      $dados["pedido2"] = $pedido2->getPedidoFechado2($id_pedido); 
-      $dados["lista"] = $pedido; 
+      $dados["pedido2"] = $pedido2->getPedidoFechado2($id_pedido);  
+      $lista=  $dados["lista"] = $pedido;   i($lista);
       $dados["view"] = "OrdemServico/novo";
       $this->load("template", $dados);
    }

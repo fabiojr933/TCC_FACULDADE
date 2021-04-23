@@ -118,4 +118,14 @@ class OrdemServicoDao extends Model{
         $qry->execute();
         return $qry->fetchAll(\PDO::FETCH_OBJ);
     }
+    public function atualizaPedido2($id_pedido){
+        $sql = "update pedido ped
+            set ped.total_pedido = (select SUM(ite.subtotal)
+            from itenpedido ite
+            where ite.id_pedido = $id_pedido) 
+            where ped.id = $id_pedido";
+        $qry = $this->db->prepare($sql);
+        $qry->execute();
+        return $this->db->lastInsertId(); 
+    }
 }

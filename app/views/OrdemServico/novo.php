@@ -7,8 +7,8 @@
 			<?php
 			$this->verMSG();
 			$this->verERRO();
-			?>
-				
+			
+			?>		
 
 
 			<section class="conteudo">
@@ -28,7 +28,7 @@
 										<div class="cx">
 											<label class="text-label"><i class="far fa-clock"></i> Pedido</label>
 											<span class="h6 mb-0" ><?php echo isset($pedido2->pedido) ? $pedido2->pedido : null ?></span>
-											<input type="hidden" name="id_pedido2" value="<?php $pedido2->pedido ?>"/>  
+											<input type="hidden" name="id_pedido" />  
 										</div>
 									</div>
 									<div class="col d-flex">
@@ -40,7 +40,7 @@
 									<div class="col d-flex">
 										<div class="cx">
 											<label class="text-label"><i class="fas fa-dollar-sign"></i> Valor</label>
-											<span class="h6 mb-0"><?php echo removerFormatacaoNumero(isset($pedido2->total_pedido) ? $pedido2->total_pedido : null) ?></span>
+											<span class="h6 mb-0"><?php echo $pedido2->total_pedido ?></span>
 										</div>
 									</div>
 								</div>
@@ -98,13 +98,14 @@
 											<tbody id="lista_itens">  
 												<?php foreach ($lista as $item) {  ?>
 													<tr class="ativo">
-														<td name="r_pedido"><?php echo $item->id_item ?></td>
+														<td><?php echo $item->id_item ?></td>
 														<td><?php echo $item->id_produto ?></td>
 														<td><?php echo $item->produto ?></td>
 														<td align="center">R$ <?php echo $item->valor_item ?></td>
 														<td align="center"><?php echo $item->qtde_item ?></td>
 														<td align="center">R$ <?php echo $item->valor_item ?></td>
-														<td align="center"><a href="<?php echo URL_BASE."item/excluir/$item->id_item" ?>" class="btn btn-outline-vermelho">Excluir</a></td>
+														<td align="center"><a href="javascript:;"  onclick="return excluir_item(this)" data-entidade="item" data-id="<?php $item->id_item ?>" class="btn btn-outline-vermelho">Excluir</a></td>
+													<!--	<td align="center"><a href=" < //?php echo URL_BASE."item/excluir/$item->id_item" ?>" class="btn btn-outline-vermelho">Excluir</a></td> -->
 													</tr>
 												<?php } ?>  
 											</tbody>
