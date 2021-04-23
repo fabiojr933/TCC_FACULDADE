@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="<?php echo URL_BASE ?>assets/js/datatables/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="<?php echo URL_BASE ?>assets/js/datatables/css/responsive.dataTables.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo URL_BASE ?>assets/js/datatables/css/DataTables_boot.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo URL_BASE ?>assets/js/datatables/css/DataTables_boot.css">    
     <link rel="stylesheet" href="<?php echo URL_BASE ?>assets/css/grade.css">
     <link rel="stylesheet" href="<?php echo URL_BASE ?>assets/css/auxiliar.css">
     <link rel="stylesheet" href="<?php echo URL_BASE ?>assets/css/style.css">
