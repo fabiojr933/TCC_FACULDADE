@@ -25,7 +25,7 @@ $(function(){
 
 	function lista_itens(data){    
 		html = "<tr>";
-		var total_pedido = 00;
+		var total_pedido = 0.00;
 		for(var i in data){ 
 			total_pedido += parseFloat(data[i].subtotal);
 			var j = parseInt(i)+1;
@@ -35,7 +35,7 @@ $(function(){
 				'<td align="left">' + data[i].valor_item + '</td>' + 
 				'<td align="left">' + data[i].qtde_item + '</td>' + 
 				'<td align="left">' + data[i].subtotal + '</td>' +
-				'<td align="center"><a href="javascript:;" onclick="return excluir_item(this)"data-entidade="item" data-id="' +data[i].id_item+'" class="btn btn-outline-vermelho" >Excluir</a></td></tr>';
+				'<td align="center"><a href="javascript:;" onclick="return excluir(this)"data-entidade="item" data-id="' +data[i].id_item+'" class="btn btn-outline-vermelho" >Excluir</a></td></tr>';
 				  }
 		 $("#total_pedido").html(html);
 		 $("#lista_itens").html(html);  

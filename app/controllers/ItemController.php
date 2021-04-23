@@ -25,7 +25,7 @@ class ItemController extends Controller
     $itenpedido->subtotal = ($itenpedido->valor * $itenpedido->qtde);
 
 
-    i($itenpedido);
+   
 
     Flash::setForm($itenpedido);
     ItemService::salvar($itenpedido, $this->campo, $this->tabela);    
@@ -35,14 +35,15 @@ class ItemController extends Controller
     echo json_encode($lista);
    
   }
-  public function excluir($id_item, $id_pedido)
+  public function excluir($id)
   {
-
-    Service::excluir($this->tabela, $this->campo, $id_item);
-    $lista = OrdemServicoService::getPedidoFechado($id_pedido);
-    ItemService::atualizaPedido($id_pedido);
-  //  OrdemServicoService::atualizaPedido2($id_pedido);
-    echo json_encode($lista);
+    $pedido = ItemService::getItem($id);       
+    Service::excluir($this->tabela, $this->campo, $id);
+    OrdemServicoService::atualizaPedido2($pedido[0]->id_pedido);
+    $this->redirect(URL_BASE."OrdemServico/novo/".$pedido[0]->id_pedido);
+  //  ItemService::atualizaPedido($pedido[0]->id_pedido);
+    
+ //   echo json_encode($lista);
     
   }
   
