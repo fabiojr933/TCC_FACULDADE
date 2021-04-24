@@ -36,7 +36,7 @@
 							</ul>
 							<span><a href=""><i class="fas fa-search"></i> Consulta</a></span>
 							<ul>
-								<li><a href="pedidos-pendentes.html"><i class="far fa-list-alt"></i> OS pendentes</a></li>
+								<li><a href="<?php echo URL_BASE."Consulta" ?>"><i class="far fa-list-alt"></i> Pedidos</a></li>
 								<li><a href="todos-pedidos.html"><i class="far fa-list-alt"></i> Todos os pendentes</a></li>
 							</ul>
 							<span><a href=""><i class="far fa-file-alt"></i> Relátorios</a></span>	

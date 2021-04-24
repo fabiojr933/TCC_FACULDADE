@@ -1,5 +1,6 @@
 $(function(){
 
+
 	
 	$("#btnInserir").on("click", function(){	
 

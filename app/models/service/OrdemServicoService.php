@@ -52,5 +52,13 @@ class OrdemServicoService
         $dao = new OrdemServicoDao();
         return $dao->atualizaPedido2($id_pedido);
     }
+    public static function todoPedido(){
+        $dao = new OrdemServicoDao();
+        return $dao->todoPedido();
+    }
+    public static function filtro($filtro){
+        $dao = new OrdemServicoDao();
+        return $dao->filtro($filtro);
+    }
     
 }

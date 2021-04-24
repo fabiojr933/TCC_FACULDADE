@@ -118,7 +118,7 @@
 									<a href="<?php echo URL_BASE ."item/cancelar/".$pedido2->pedido?>" class="btn btn-vermelho d-inline-block"><i class="fas fa-times"></i> Cancelar</a>
 									<a href="" class="btn d-inline-block" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class="fas fa-check"></i> Finalizar</a>
 									<!--	<a href="" class="btn d-inline-block"><i class="fas fa-check"></i> Finalizar</a>  -->
-									<a href="<?php echo URL_BASE ."item/finalizado/".$pedido2->pedido?>" class="btn d-inline-block"><i class="fas fa-check"></i> Finalizar2</a>
+									<a href="<?php echo URL_BASE ."item/finalizado/".$pedido2->pedido?>" class="btn d-inline-block"><i class="fas fa-check"></i> Finalizar_certo</a> 
 								</div>
 							</div>
 						</div>
@@ -132,8 +132,7 @@
 				<!-- MODAL -->
 
 
-				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button>
-
+			
 				<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
@@ -144,40 +143,41 @@
 								</button>
 							</div>
 							<div class="modal-body">
-								<form>
+								<form >
 									<div class="col-12">
 										<span class="text-label">Condição Pagamento</span>
 										<select class="form-campo" name="pagamento">
-											<option value="1">Vista</option>
-											<option value="2">Prazo</option>
-											<option value="2">Cartão</option>
+										<?php foreach($pagamento as $pag)  { ?>
+											<option value="<?php echo isset($pag->id) ? $pag->id : null ?>" <?php echo $pedido2->id_pagamento == $pag->id ? "selected" : "" ?>><?php echo isset($pag->descricao) ? $pag->descricao : null?></option>	
+										<?php } ?>										
 										</select>
 									</div>
 									<div class="col-12">
 										<span class="text-label">Valor Bruto</span>
-										<input type="text" name="descricao" id="valor_bruto" value="<?php echo $pedido2->total_pedido ?>" placeholder="Valor Bruto" class="form-campo" readonly>
+										<input type="text" name="valor_bruto" id="valor_bruto" value="<?php echo $pedido2->total_pedido ?>" placeholder="Valor Bruto" class="form-campo" readonly>
 									</div>
 									<div class="col-12">
 										<span class="text-label">Valor Desconto</span>
-										<input type="text" id="desconto" name="descricao" placeholder="Valor do Desconto" class="form-campo">
+										<input type="text" id="desconto" name="desconto" placeholder="Valor do Desconto" class="form-campo">
 									</div>
 									<div class="col-12">
 										<span class="text-label">Valor Liquido</span>
-										<input type="number" id="valor_liquido" readonly name="descricao"  placeholder="Valor Liquido" class="form-campo">
+										<input type="number" id="valor_liquido" name="valor_liquido" readonly name="descricao"  placeholder="Valor Liquido" class="form-campo">
 									</div>
 									<div class="col-12">
 										<span class="text-label">Valor Informado </span>
-										<input type="number" id="valor_informado" name="Informe o valor"  placeholder="Valor Liquido" class="form-campo">
+										<input type="number" id="valor_informado" name="valor_informado"  placeholder="Valor Liquido" class="form-campo">
 									</div>
 									<div class="col-12">
 										<span class="text-label">Troco</span>
-										<input type="text" id="troco" name="descricao" placeholder="Troco" class="form-campo" readonly>
+										<input type="text" id="troco" name="troco" placeholder="Troco" class="form-campo" readonly>
 									</div>
 								</form>
 							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
-								<a href="" type="button" class="btn btn-primary">Finalizar</a>
+							<div class="modal-footer">				
+								<input type="hidden" name="pedidoItem" value="<?php echo $pedido2->pedido ?>"/>
+								<button type="submit" class="btn btn-secondary" data-dismiss="modal">Sair</button>
+								<a href="<?php echo URL_BASE."item/finalizado/".$pedido2->pedido ?>" type="button" class="btn btn-primary">Finalizar</a>
 							</div>
 						</div>
 					</div>

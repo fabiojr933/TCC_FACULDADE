@@ -25,40 +25,57 @@ class ItemController extends Controller
     $itenpedido->subtotal = ($itenpedido->valor * $itenpedido->qtde);
 
 
-   
+
 
     Flash::setForm($itenpedido);
-    ItemService::salvar($itenpedido, $this->campo, $this->tabela);    
- //   OrdemServicoService::atualizaPedido2($id_pedido);
+    ItemService::salvar($itenpedido, $this->campo, $this->tabela);
+    //   OrdemServicoService::atualizaPedido2($id_pedido);
     ItemService::atualizaPedido($itenpedido->id_pedido);
-    $lista = OrdemServicoService::getPedidoFechado($itenpedido->id_pedido); 
+    $lista = OrdemServicoService::getPedidoFechado($itenpedido->id_pedido);
     echo json_encode($lista);
-   
   }
-  public function excluir($id)
+  public function excluir($id) 
   {
-    $pedido = ItemService::getItem($id);       
+   
+    $pedido = ItemService::getItem($id);
     Service::excluir($this->tabela, $this->campo, $id);
     OrdemServicoService::atualizaPedido2($pedido[0]->id_pedido);
-    $this->redirect(URL_BASE."OrdemServico/novo/".$pedido[0]->id_pedido);
-  //  ItemService::atualizaPedido($pedido[0]->id_pedido);    
- //   echo json_encode($lista);
-    
+    $this->redirect(URL_BASE . "OrdemServico/novo/" . $pedido[0]->id_pedido);
+    //  ItemService::atualizaPedido($pedido[0]->id_pedido);    
+    //   echo json_encode($lista);
+
   }
-  public function finalizado($id_pedido){
+  public function finalizado($id_pedido)
+  {
+    
+    $item = new \stdClass();
+    $item->id = null;
+    $item->id_pedido = $_POST["pedidoItem"];
+    $item->id_pagamento = $_POST["pagamento"];
+    $item->valor_bruto = $_POST["valor_bruto"];
+    $item->valor_desconto = $_POST["desconto"];
+    $item->valor_liquido = $_POST["valor_liquido"];
+    $item->valor_informado = $_POST["valor_informado"];
+    $item->troco = $_POST["troco"];
+
+    Flash::setForm($item);
+    ItemService::salvar($item, $this->campo, "forma_pagamento");
+   
+
     $lista = OrdemServicoService::getPedidoFechado2($id_pedido);
-    Service::editar(["finalizado"=>"S", "id"=>$id_pedido], "id", "pedido");
+ 
+    Service::editar(["finalizado" => "S", "id" => $id_pedido], "id", "pedido");
     ItemService::finalizarPrisma($lista->id_prisma);
-    $this->redirect(URL_BASE."OrdemServico");
-}
-public function cancelar($id_pedido){
-  $lista = OrdemServicoService::getPedidoFechado2($id_pedido); 
-  $id =Service::excluir("itenpedido", "id_pedido", $id_pedido);
-  if($id){
-    Service::excluir("pedido", "id", $id_pedido);
+    $this->redirect(URL_BASE . "OrdemServico");
+  }
+  public function cancelar($id_pedido)
+  {
+    $lista = OrdemServicoService::getPedidoFechado2($id_pedido);
+    $id = Service::excluir("itenpedido", "id_pedido", $id_pedido);
+    if ($id) {
+      Service::excluir("pedido", "id", $id_pedido);
+    }
+    ItemService::finalizarPrisma($lista->id_prisma);
+    $this->redirect(URL_BASE . "OrdemServico");
   }  
-  ItemService::finalizarPrisma($lista->id_prisma);
-  $this->redirect(URL_BASE."OrdemServico");
-}
-  
 }

@@ -82,7 +82,7 @@
                                     <div class="card-body">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="mr-2">   
-                                            <div class="text-white-78 small">Prisma: <?php echo isset($os->id_prisma) ? $os->id_prisma : null?></div>                                         
+                                            <div class="text-white-78 small">Prisma: <?php echo isset($os->id_prisma) ? $os->id_prisma : null?> </div>                                         
                                                 <div class="text-white-75 small"><?php echo isset($os->nome_cliente) ? $os->nome_cliente : "Nome cliente"?></div>
                                                 <div class="text-lg font-weight-bold"><?php echo isset($os->total_pedido) ? "R$: ". $os->total_pedido : "Valor: R$: 00,00"?></div>
                                             </div>

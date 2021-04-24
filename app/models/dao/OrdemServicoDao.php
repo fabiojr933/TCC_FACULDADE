@@ -25,7 +25,8 @@ class OrdemServicoDao extends Model{
     } 
     public function getPedidoFechado2($id_pedido){
           $sql = "SELECT  p.id as pedido,
-                              P.id_prisma,  
+                              P.id_prisma, 
+                              p.id_pagamento, 
                               p.id_cliente as id_cliente,
                               c.nome as cliente,
                               p.data_pedido,
@@ -135,5 +136,35 @@ class OrdemServicoDao extends Model{
         $qry = $this->db->prepare($sql);
         $qry->execute();
         return $this->db->lastInsertId(); 
+    }
+    public function todoPedido(){
+        $sql = "SELECT b.nome as cliente,
+                a.id as pedido,	
+                a.finalizado,
+                a.data_pedido as data,
+                a.total_pedido
+                FROM pedido A
+                join cliente b on a.id_cliente = b.id
+                GROUP by 2";
+        $qry = $this->db->prepare($sql);
+        $qry->execute();
+        return $qry->fetchAll(\PDO::FETCH_OBJ);
+    }
+    public function filtro($filtro){
+        $sql = "SELECT b.nome as cliente,
+                a.id as pedido,	
+                a.finalizado,
+                a.data_pedido as data,
+                a.total_pedido
+                FROM pedido A
+                join cliente b on a.id_cliente = b.id";
+        if($filtro->data01){
+            if($filtro->data02){
+                $sql .=" where data_pedido BETWEEN '$filtro->data01' and '$filtro->data02' GROUP by 2";
+            }else{
+                $sql .=" where data_pedido = '$filtro->data01' GROUP by 2";
+            }
+        }
+        return $this->select($this->db, $sql, true);
     }
 }
