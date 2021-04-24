@@ -2,6 +2,7 @@
 namespace app\models\dao;
 
 use app\core\Model;
+use app\models\service\Service;
 
 class OrdemServicoDao extends Model{
     public function getPrisma(){
@@ -24,6 +25,7 @@ class OrdemServicoDao extends Model{
     } 
     public function getPedidoFechado2($id_pedido){
           $sql = "SELECT  p.id as pedido,
+                              P.id_prisma,  
                               p.id_cliente as id_cliente,
                               c.nome as cliente,
                               p.data_pedido,
@@ -77,7 +79,7 @@ class OrdemServicoDao extends Model{
         b.total_pedido 
         FROM prisma A
         LEFT join pedido b on a.id = b.id_prisma
-        LEFT join cliente c on b.id_cliente = c.id
+        LEFT join cliente c on b.id_cliente = c.id       
         order by a.id asc";       
         $qry = $this->db->prepare($sql);
         $qry->execute();
@@ -124,6 +126,12 @@ class OrdemServicoDao extends Model{
             from itenpedido ite
             where ite.id_pedido = $id_pedido) 
             where ped.id = $id_pedido";
+        $qry = $this->db->prepare($sql);
+        $qry->execute();
+        return $this->db->lastInsertId(); 
+    }   
+    public function finalizarPrisma($id_prisma){
+        $sql = "UPDATE PRISMA A SET A.STATUS = '1' WHERE A.ID = $id_prisma";
         $qry = $this->db->prepare($sql);
         $qry->execute();
         return $this->db->lastInsertId(); 

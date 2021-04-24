@@ -31,7 +31,7 @@ class ItemController extends Controller
     ItemService::salvar($itenpedido, $this->campo, $this->tabela);    
  //   OrdemServicoService::atualizaPedido2($id_pedido);
     ItemService::atualizaPedido($itenpedido->id_pedido);
-    $lista = OrdemServicoService::getPedidoFechado($itenpedido->id_pedido);
+    $lista = OrdemServicoService::getPedidoFechado($itenpedido->id_pedido); 
     echo json_encode($lista);
    
   }
@@ -41,10 +41,24 @@ class ItemController extends Controller
     Service::excluir($this->tabela, $this->campo, $id);
     OrdemServicoService::atualizaPedido2($pedido[0]->id_pedido);
     $this->redirect(URL_BASE."OrdemServico/novo/".$pedido[0]->id_pedido);
-  //  ItemService::atualizaPedido($pedido[0]->id_pedido);
-    
+  //  ItemService::atualizaPedido($pedido[0]->id_pedido);    
  //   echo json_encode($lista);
     
   }
+  public function finalizado($id_pedido){
+    $lista = OrdemServicoService::getPedidoFechado2($id_pedido);
+    Service::editar(["finalizado"=>"S", "id"=>$id_pedido], "id", "pedido");
+    ItemService::finalizarPrisma($lista->id_prisma);
+    $this->redirect(URL_BASE."OrdemServico");
+}
+public function cancelar($id_pedido){
+  $lista = OrdemServicoService::getPedidoFechado2($id_pedido); 
+  $id =Service::excluir("itenpedido", "id_pedido", $id_pedido);
+  if($id){
+    Service::excluir("pedido", "id", $id_pedido);
+  }  
+  ItemService::finalizarPrisma($lista->id_prisma);
+  $this->redirect(URL_BASE."OrdemServico");
+}
   
 }

@@ -115,9 +115,10 @@
 									</div>
 								</div>
 								<div class="text-right pt-3 base-botoes">
-									<a href="" class="btn btn-vermelho d-inline-block"><i class="fas fa-times"></i> Cancelar</a>
+									<a href="<?php echo URL_BASE ."item/cancelar/".$pedido2->pedido?>" class="btn btn-vermelho d-inline-block"><i class="fas fa-times"></i> Cancelar</a>
 									<a href="" class="btn d-inline-block" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class="fas fa-check"></i> Finalizar</a>
 									<!--	<a href="" class="btn d-inline-block"><i class="fas fa-check"></i> Finalizar</a>  -->
+									<a href="<?php echo URL_BASE ."item/finalizado/".$pedido2->pedido?>" class="btn d-inline-block"><i class="fas fa-check"></i> Finalizar2</a>
 								</div>
 							</div>
 						</div>

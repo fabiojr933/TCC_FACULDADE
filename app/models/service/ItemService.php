@@ -19,4 +19,8 @@ class ItemService {
         Service::editar(["total_pedido"=>$soma, "id"=>$id_pedido], "id", "pedido");
         
     }
+    public static function finalizarPrisma($id_prisma){
+        $dao = new OrdemServicoDao();
+        return $dao->finalizarPrisma($id_prisma);
+    }
 }
