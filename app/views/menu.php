@@ -41,11 +41,11 @@
 							</ul>
 							<span><a href=""><i class="far fa-file-alt"></i> Relátorios</a></span>	
 							<ul>					 
-								<li><a href="relatorio-pedido.html"><i class="far fa-list-alt"></i> Relatórios de pedidos</a></li>
+								<li><a href="<?php echo URL_BASE."Relatorio" ?>"><i class="far fa-list-alt"></i> Relatórios de pedidos</a></li>
 							</ul>
 							<span><a href=""><i class="fas fa-chart-line"></i> Gráfico</a></span>	
 							<ul>		
-								<li><a href="grafico-diario.html"><i class="far fa-list-alt"></i> Gráfico diário</a></li>
+								<li><a href="<?php echo URL_BASE."grafico" ?>"><i class="far fa-list-alt"></i> Gráfico diário</a></li>
 							</ul>
 						</div>
 						<ul>

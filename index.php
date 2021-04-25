@@ -9,6 +9,7 @@ require_once 'app/helper/numero.php';
 require_once 'app/helper/rede.php';
 require_once 'config/config.php';
 require_once 'vendor/autoload.php';
+require_once 'app/classes/pdf/fpdf.php';
 date_default_timezone_set(TIMEZONE);
 
 try{

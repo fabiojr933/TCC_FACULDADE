@@ -12,13 +12,13 @@
     <link rel="stylesheet" href="<?php echo URL_BASE ?>assets/css/grade.css">
     <link rel="stylesheet" href="<?php echo URL_BASE ?>assets/css/auxiliar.css">
     <link rel="stylesheet" href="<?php echo URL_BASE ?>assets/css/style.css">
-
+    <script src="<?php echo URL_BASE ?>assets/js/jquery.min.js"></script>
+    <script src="<?php echo URL_BASE ?>assets/js/js.js"></script>
     <script>
        var base_url = "<?php echo URL_BASE ?>";
     </script>
 
-    <script src="<?php echo URL_BASE ?>assets/js/jquery.min.js"></script>
-    <script src="<?php echo URL_BASE ?>assets/js/js.js"></script>
+    
 
    
 
@@ -42,8 +42,7 @@
 
    
     <script src="<?php echo URL_BASE ?>assets/js/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="<?php echo URL_BASE ?>assets/js/datatables/js/dataTables.responsive.min.js"></script>   
-    <script src="<?php echo URL_BASE ?>assets/js/componentes/js_grafico.js"></script>
+    <script src="<?php echo URL_BASE ?>assets/js/datatables/js/dataTables.responsive.min.js"></script>  
     <script src="https://kit.fontawesome.com/9480317a2f.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 

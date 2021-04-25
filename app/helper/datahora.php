@@ -167,6 +167,14 @@ function agora(){
      $data = extrair_data($data, $opcao);
      return cal_days_in_month ( CAL_GREGORIAN , intval($data[1]) , $data[2] ); 
  }
- 
+ function diferenciaDataEmDias($d1, $d2){
+     $diferencia = $d1->diff($d2, true);
+     return $diferencia->d + $diferencia->h;
+ }
+ function somarDataMysql($data, $ano, $meses, $dias){
+    $data = explode("-", $data);
+    $resData2 = date("Y-m-d", mktime(0, 0, 0, $data[1] + $meses, $data[2] + $dias, $data[0] + $ano));
+    return $resData2;
+ }
  
  

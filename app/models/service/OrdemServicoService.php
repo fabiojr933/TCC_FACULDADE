@@ -60,5 +60,17 @@ class OrdemServicoService
         $dao = new OrdemServicoDao();
         return $dao->filtro($filtro);
     }
-    
+    public static function todoClientes(){
+        $dao = new OrdemServicoDao();
+        return $dao->todoClientes();
+    }
+    public function getPedidoPrismaRelatorio($data1, $data2)
+    {
+        $dao = new OrdemServicoDao();
+        return $dao->getPedidoPrismaRelatorio($data1, $data2);
+    }
+    public static function somaPorData($data01, $data02){
+        $dao = new OrdemServicoDao();
+        return $dao->somaPorData($data01, $data02);
+    }
 }

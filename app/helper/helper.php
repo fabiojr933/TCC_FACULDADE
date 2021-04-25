@@ -131,6 +131,7 @@ function validaEmail($email){
      $retorno = (object) array("erro" => $erro, "msg"=> $msg, "nome"=>$nome_final);
      return $retorno;
  }
+
  
 
  

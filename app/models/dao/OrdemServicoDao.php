@@ -75,6 +75,8 @@ class OrdemServicoDao extends Model{
         $sql = "SELECT a.id as id_prisma,
         c.id as id_cliente,
         a.status,
+        b.data_pedido,
+        c.endereco,
         c.nome as nome_cliente,
         b.id as id_pedido,
         b.total_pedido 
@@ -90,6 +92,7 @@ class OrdemServicoDao extends Model{
         $sql = "select 
                 a.id as id_pedido,
                 a.data_pedido,
+                b.id as id_cliente,
                 b.nome as nome_cliente,
                 a.total_pedido
                 from pedido A
@@ -166,5 +169,37 @@ class OrdemServicoDao extends Model{
             }
         }
         return $this->select($this->db, $sql, true);
+    }
+    public function todoClientes(){
+        $sql = "SELECT b.id, b.nome from cliente b";
+        return $this->select($this->db, $sql);
+    }
+    public function getPedidoPrismaRelatorio($data1, $data2){
+        $sql = "SELECT a.id as id_prisma,
+        c.id as id_cliente,
+        a.status,
+        b.data_pedido,
+        c.endereco,
+        c.nome as nome_cliente,
+        b.id as id_pedido,
+        b.total_pedido 
+        FROM prisma A
+        LEFT join pedido b on a.id = b.id_prisma
+        LEFT join cliente c on b.id_cliente = c.id 
+        where b.data_pedido between '$data1' and '$data2'";       
+        $qry = $this->db->prepare($sql);
+        $qry->execute();
+        return $qry->fetchAll(\PDO::FETCH_OBJ);
+    }
+    public function somaPorData($data01, $data02){
+        $sql = "SELECT A.data_pedido AS data, SUM(A.total_pedido) as total 
+                            FROM pedido A 
+                            WHERE A.FINALIZADO = 'S'
+                            AND  a.data_pedido BETWEEN '$data01' AND '$data02'
+                            GROUP BY A.data_pedido";
+          $qry = $this->db->prepare($sql);
+          $qry->execute();
+          return $qry->fetchAll(\PDO::FETCH_OBJ);
+        
     }
 }
