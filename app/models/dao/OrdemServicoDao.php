@@ -72,18 +72,16 @@ class OrdemServicoDao extends Model{
          return $qry->fetchAll(\PDO::FETCH_OBJ);
     }
     public function getPedidoPrisma(){
-        $sql = "SELECT a.id as id_prisma,
-        c.id as id_cliente,
-        a.status,
-        b.data_pedido,
-        c.endereco,
-        c.nome as nome_cliente,
-        b.id as id_pedido,
-        b.total_pedido 
-        FROM prisma A
-        LEFT join pedido b on a.id = b.id_prisma
-        LEFT join cliente c on b.id_cliente = c.id       
-        order by a.id asc";       
+        $sql = "SELECT p.id as id_pedido,
+                        c.id as id_cliente,
+                        p.id_prisma,
+                        c.nome as nome_cliente,
+                        c.endereco,
+                        p.data_pedido,
+                        p.total_pedido
+                from pedido p
+                join cliente c on p.id_cliente = c.id
+                where p.finalizado = 'S'";       
         $qry = $this->db->prepare($sql);
         $qry->execute();
         return $qry->fetchAll(\PDO::FETCH_OBJ);
@@ -135,7 +133,9 @@ class OrdemServicoDao extends Model{
         return $this->db->lastInsertId(); 
     }   
     public function finalizarPrisma($id_prisma){
-        $sql = "UPDATE PRISMA A SET A.STATUS = '1' WHERE A.ID = $id_prisma";
+        $sql = "UPDATE PRISMA A SET A.STATUS = '1',
+                                    A.PEDIDO = '0'
+                WHERE A.ID = $id_prisma";
         $qry = $this->db->prepare($sql);
         $qry->execute();
         return $this->db->lastInsertId(); 
@@ -201,5 +201,71 @@ class OrdemServicoDao extends Model{
           $qry->execute();
           return $qry->fetchAll(\PDO::FETCH_OBJ);
         
+    }
+    public function updatePrisma($id_prisma, $pedido){
+        $sql = "UPDATE PRISMA A
+                    SET A.pedido = $pedido
+                    WHERE A.id = $id_prisma";
+        $qry = $this->db->prepare($sql);
+        $qry->execute();
+        return $this->db->lastInsertId(); 
+    }
+    public function insertPagamento($id_pagamento, $id_pedido, $valor_bruto, $valor_desconto, $valor_liquido, $valor_informado, $troco){
+        $sql = "INSERT INTO forma_pagamento(id_pedido, id_pagamento, valor_bruto, valor_desconto, valor_liquido, valor_informado, troco) 
+                VALUES (:id_pedido, :id_pagamento, :valor_bruto, :valor_desconto, :valor_liquido, :valor_informado, :troco )";
+        $qry = $this->db->prepare($sql);
+        $qry->bindValue(":id_pedido",$id_pedido);
+        $qry->bindValue(":id_pagamento",$id_pagamento);
+        $qry->bindValue(":valor_bruto",$valor_bruto);
+        $qry->bindValue(":valor_desconto",$valor_desconto);
+        $qry->bindValue(":valor_liquido",$valor_liquido);
+        $qry->bindValue(":valor_informado",$valor_informado);
+        $qry->bindValue(":troco",$troco);
+        $qry->execute();
+    }
+    public function getPedidoPendete(){
+        $sql = "SELECT p.id as id_pedido,
+                        c.id as id_cliente,
+                        p.id_prisma,
+                        c.nome as nome_cliente,
+                        c.endereco,
+                        p.data_pedido,
+                        p.total_pedido
+                from pedido p
+                join cliente c on p.id_cliente = c.id
+                where p.finalizado = 'N'
+                LIMIT 3";       
+        $qry = $this->db->prepare($sql);
+        $qry->execute();
+        return $qry->fetchAll(\PDO::FETCH_OBJ);
+    }
+    public function getTodosPedido(){
+        $sql = "SELECT p.id as id_pedido,
+                        c.id as id_cliente,
+                        p.id_prisma,
+                        c.nome as nome_cliente,
+                        c.endereco,
+                        p.data_pedido,
+                        p.total_pedido
+                from pedido p
+                join cliente c on p.id_cliente = c.id";       
+        $qry = $this->db->prepare($sql);
+        $qry->execute();
+        return $qry->fetchAll(\PDO::FETCH_OBJ);
+    }
+    public function getPedidoPrisma2(){
+        $sql = "select a.id as id_prisma,
+                        B.id AS id_pedido,
+                        a.status,
+                        b.id_cliente as id_cliente,
+                        c.nome as nome_cliente,
+                        b.total_pedido
+                from prisma a
+                LEFT join pedido b on a.id = b.id_prisma
+                                and a.pedido = b.id
+                LEFT join cliente c on b.id_cliente = c.id";       
+        $qry = $this->db->prepare($sql);
+        $qry->execute();
+        return $qry->fetchAll(\PDO::FETCH_OBJ);
     }
 }

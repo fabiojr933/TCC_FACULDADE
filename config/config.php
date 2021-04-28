@@ -1,7 +1,7 @@
 <?php
 define("SERVIDOR", "localhost");
-define("BANCO", "OS");
-define("USUARIO", "root");
+define("BANCO", "os");
+define("USUARIO", "root"); 
 define("SENHA", "");
 define("CHARSET","UTF8");
 

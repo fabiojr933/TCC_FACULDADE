@@ -88,6 +88,10 @@ class ClienteController extends Controller
         $lista = Service::getLike("cliente","nome", $obj, true);
         echo json_encode($lista);
     }
+    public function buscaCNPJ($cnpj){
+        $retorno = enviarGetCurl("https://www.receitaws.com.br/v1/cnpj/".$cnpj);
+        echo json_encode($retorno);
+    }
 }
 
 

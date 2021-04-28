@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\core\Controller;
+use app\models\service\OrdemServicoService;
 use app\util\UtilService;
 
 class HomeController extends Controller
@@ -19,6 +20,8 @@ class HomeController extends Controller
 
     public function index()
     {
+        $dados["PedidoPendentes"] = OrdemServicoService::getPedidoPendete();
+        $dados["todosPedidos"] = OrdemServicoService::getTodosPedido(); 
         $dados["view"] = "home";
         $this->load("template", $dados);
     }

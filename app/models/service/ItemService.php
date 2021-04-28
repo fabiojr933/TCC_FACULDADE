@@ -23,5 +23,9 @@ class ItemService {
         $dao = new OrdemServicoDao();
         return $dao->finalizarPrisma($id_prisma);
     }
-   
+    public static function insertPagamento($id_pagamento, $id_pedido, $valor_bruto, $valor_desconto, $valor_liquido, $valor_informado, $troco){ 
+        $dao = new OrdemServicoDao();
+        return $dao->insertPagamento($id_pagamento, $id_pedido, $valor_bruto, $valor_desconto, $valor_liquido, $valor_informado, $troco);
+    }
+       
 }

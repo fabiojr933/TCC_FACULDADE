@@ -57,7 +57,7 @@
 											</div>
 											<div class="col-8">
 												<span class="text-label">Observação</span>
-												<input type="text" name="observacao" value="<?php echo isset($lista->observacao) ? $lista->observacao : null ?>" placeholder="Digite Preço Venda" class="form-campo">
+												<input type="text" name="observacao" value="<?php echo isset($lista->observacao) ? $lista->observacao : null ?>" placeholder="Digite sua Obervação" class="form-campo">
 											</div>
 
 											<div class="col-4">

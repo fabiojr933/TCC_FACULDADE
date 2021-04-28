@@ -31,7 +31,7 @@ class OrdemServicoController extends Controller
    {
       $dados["prisma"] = Service::lista("prisma");
       $prisma =  new OrdemServicoService(); 
-      $dados["listaOs"] = $prisma->getPedidoPrisma();  
+      $dados["listaOs"] = $prisma->getPedidoPrisma2();  
       $dados["listaTop"] = $prisma->getLimit();  
       $dados["view"] = "OrdemServico/index";
       $this->load("template", $dados);
@@ -41,7 +41,8 @@ class OrdemServicoController extends Controller
       $pedido = OrdemServicoService::getPedidoFechado($id_pedido);
       $pedido2 = new OrdemServicoService();
       $dados["pedido"] = Flash::getForm();     
-      $dados["pedido2"] = $pedido2->getPedidoFechado2($id_pedido);  
+      $ped = $dados["pedido2"] = $pedido2->getPedidoFechado2($id_pedido);  
+      OrdemServicoService::updatePrisma($ped->id_prisma, $ped->pedido);  
       $dados["lista"] = $pedido;   
       $dados["pagamento"] = Service::lista("pagamento");
       $dados["view"] = "OrdemServico/novo";

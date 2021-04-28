@@ -19,4 +19,5 @@ class ItemValidacao{
       
         return $validacao;
     }
+
 }

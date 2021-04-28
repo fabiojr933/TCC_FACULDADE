@@ -49,7 +49,6 @@ class ItemController extends Controller
   {
     
     $item = new \stdClass();
-    $item->id = null;
     $item->id_pedido = $_POST["pedidoItem"];
     $item->id_pagamento = $_POST["pagamento"];
     $item->valor_bruto = $_POST["valor_bruto"];
@@ -58,10 +57,9 @@ class ItemController extends Controller
     $item->valor_informado = $_POST["valor_informado"];
     $item->troco = $_POST["troco"];
 
-    Flash::setForm($item);
-    ItemService::salvar($item, $this->campo, "forma_pagamento");
-   
-
+    Flash::setForm($item);  
+    ItemService::insertPagamento($item->id_pagamento, $item->id_pedido, $item->valor_bruto, $item->valor_desconto, $item->valor_liquido, $item->valor_informado, $item->troco);
+    
     $lista = OrdemServicoService::getPedidoFechado2($id_pedido);
  
     Service::editar(["finalizado" => "S", "id" => $id_pedido], "id", "pedido");

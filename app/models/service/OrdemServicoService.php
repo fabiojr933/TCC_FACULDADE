@@ -73,4 +73,21 @@ class OrdemServicoService
         $dao = new OrdemServicoDao();
         return $dao->somaPorData($data01, $data02);
     }
+    public static function updatePrisma($id_prisma, $pedido){
+        $dao = new OrdemServicoDao();
+        return $dao->updatePrisma($id_prisma, $pedido);
+    }
+    public static function getPedidoPendete(){
+        $dao = new OrdemServicoDao();
+        return $dao->getPedidoPendete();
+    }
+    public static function getTodosPedido(){
+        $dao = new OrdemServicoDao();
+        return $dao->getTodosPedido();
+    }
+    public function getPedidoPrisma2()
+    {
+        $dao = new OrdemServicoDao();
+        return $dao->getPedidoPrisma2();
+    }
 }
