@@ -1,4 +1,4 @@
-# Sistema desenvolvido na TCC faculdade unopar e unifama - guaranta do norte - MT
+# Sistema desenvolvido para o TCC faculdade unopar e unifama - guaranta do norte - MT
 
 
 Sistema de Ordem de serviço,
